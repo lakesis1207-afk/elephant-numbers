@@ -1,0 +1,28 @@
+{
+  "name": "elephant-numbers",
+  "private": true,
+  "version": "0.1.0",
+  "description": "코끼리와 숫자 친구들 — 유아 숫자 학습 웹앱",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/voice-manifest.mjs",
+    "dev": "vite",
+    "prebuild": "node scripts/voice-manifest.mjs",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "voice:manifest": "node scripts/voice-manifest.mjs",
+    "voice:list": "node scripts/voice-list.mjs",
+    "icons": "node scripts/make-icons.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  },
+  "dependencies": {
+    "@fontsource/jua": "^5.3.0"
+  }
+}

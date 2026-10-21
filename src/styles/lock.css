@@ -1,0 +1,151 @@
+/* 잠금 화면 + 부모님 메뉴 (시제품 CSS를 옮김). 부모님 메뉴는 어른용이라 글자를 쓴다. */
+
+/* 잠금 */
+.screen.lock {
+  z-index: 20;
+  background: radial-gradient(circle at 70% 20%, #2f3f6b, var(--night));
+  color: #fff;
+  justify-content: center;
+  gap: 2cqh;
+  padding-top: 4cqh;
+}
+.lock .sleepy {
+  height: 36cqh;
+  transform: rotate(-8deg);
+  filter: brightness(0.85);
+}
+.lock p {
+  margin: 0;
+  font-size: 5cqh;
+  position: relative;
+}
+.lock p.mission {
+  font-size: 3.6cqh;
+  color: #ffe07a;
+}
+.zzz {
+  position: absolute;
+  left: 58%;
+  top: 14cqh;
+  font-size: 6cqh;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  50% {
+    transform: translate(2cqh, -3cqh);
+    opacity: 0.6;
+  }
+}
+.stars i {
+  position: absolute;
+  width: 0.8cqh;
+  height: 0.8cqh;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.7;
+}
+
+/* 꾹 누르기 버튼: 누르는 동안 노란 막대가 왼쪽부터 찬다 */
+.hold {
+  position: relative;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 3cqh;
+  padding: 1.4cqh 4cqh;
+  border-radius: 4cqh;
+  overflow: hidden;
+  touch-action: none;
+}
+.hold::after,
+.pbtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 200, 58, 0.45);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+.hold.holding::after,
+.pbtn.holding::after {
+  transition: transform var(--hold-ms, 3s) linear;
+  transform: scaleX(1);
+}
+.pbtn {
+  position: relative;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* 부모님 메뉴 */
+.modal {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: rgba(30, 42, 74, 0.55);
+  display: grid;
+  place-items: center;
+}
+.panel {
+  background: var(--card);
+  border-radius: 3.5cqh;
+  padding: 3.4cqh 4.4cqh;
+  width: 80cqh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6cqh;
+  font-family: var(--font);
+  color: var(--ink);
+}
+.panel h3 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 4.6cqh;
+}
+.panel .left {
+  font-size: 3cqh;
+  color: var(--soft);
+  margin-bottom: 0.6cqh;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2cqh;
+  font-size: 3.2cqh;
+  border-top: 0.25cqh solid #eee3cf;
+  padding-top: 1.4cqh;
+}
+.row .ctrls {
+  display: flex;
+  gap: 1cqh;
+}
+.row button {
+  background: #f2e7d2;
+  border-radius: 2.4cqh;
+  padding: 1cqh 2.6cqh;
+  font-size: 3cqh;
+  white-space: nowrap;
+}
+.row button.on {
+  background: var(--leaf);
+  color: #fff;
+}
+.row button.danger {
+  background: var(--coral);
+  color: #fff;
+}
+.panel .close {
+  align-self: center;
+  margin-top: 1cqh;
+  background: #f2e7d2;
+  border-radius: 3cqh;
+  padding: 1.2cqh 5cqh;
+  font-size: 3.2cqh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zzz {
+    animation: none;
+  }
+}
