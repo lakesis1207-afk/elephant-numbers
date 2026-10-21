@@ -30,6 +30,11 @@ body {
   overscroll-behavior: none;
 }
 
+/*
+ * 화면 틀: 16:10보다 길쭉한 화면(휴대폰 등)은 무대가 화면을 꽉 채운다.
+ * 16:10보다 덜 길쭉한 화면(4:3 태블릿 등)은 게임판이 넘치지 않게 16:10을 지키고 위아래만 비운다.
+ * 크기는 무대 높이 기준(cqh)이라 화면이 길어져도 좌우 공간만 넓어진다.
+ */
 .wrap {
   /* dvh: 휴대폰 주소창을 뺀 실제 보이는 높이. 지원하지 않는 브라우저는 앞줄(100%)을 쓴다. */
   height: 100%;
@@ -37,20 +42,26 @@ body {
   display: grid;
   place-items: center;
   box-sizing: border-box;
-  padding-block: 10px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  /* 카메라 구멍·노치가 있는 휴대폰은 그만큼만 안쪽으로 */
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
 }
 
 .stage {
   position: relative;
-  width: min(100%, calc((100vh - 20px) * 1.6));
-  width: min(100%, calc((100dvh - 20px) * 1.6));
-  aspect-ratio: 16 / 10;
+  width: 100%;
+  height: 100%;
+  max-height: 62.5vw; /* = 화면 너비 ÷ 1.6 → 16:10보다 위아래로 커지지 않는다 */
   container-type: size;
-  border-radius: 2.5cqh;
   overflow: hidden;
   background: var(--sky);
+}
+
+/* 16:10보다 덜 길쭉한 화면: 위아래가 비므로 예전처럼 둥근 모서리를 둔다 */
+@media (max-aspect-ratio: 16 / 10) {
+  .stage {
+    border-radius: 2.5cqh;
+  }
 }
 
 .screen {
