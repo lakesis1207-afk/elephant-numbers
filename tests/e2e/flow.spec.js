@@ -63,13 +63,18 @@ test.describe('시작 → 지도 → 사바나 마을', () => {
     expect(await page.evaluate(() => document.fonts.check('16px Jua', '코끼리'))).toBe(true);
   });
 
-  test('모든 마을을 열면 준비 중인 마을은 "곧 만나요" 화면으로 가고 지도로 돌아온다', async ({ page }) => {
+  test('모든 마을을 열면 다섯 마을 모두 게임 카드 3개가 있고, 그림이 다 보인다', async ({ page }) => {
     await startWith(page, { allOpen: true });
-    await page.getByRole('button', { name: '숲속 마을', exact: true }).click();
-
-    await expect(page.getByRole('img', { name: '숲속 마을' })).toBeVisible();
-    await page.getByRole('button', { name: '지도로 가기' }).click();
-    await expect(page.locator('.vcard')).toHaveCount(5);
+    for (const name of ['숲속 마을', '바다·극지 마을', '공룡 나라', '농장 마을']) {
+      await page.getByRole('button', { name, exact: true }).click();
+      await expect(page.locator('.gcard')).toHaveCount(3);
+      await expect(page.locator('.screen.village .story')).toBeVisible();
+      // 그림이 다 불러와질 때까지 잠깐 기다린다
+      await expect.poll(() => page.locator('img').evaluateAll((imgs) =>
+        imgs.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.getAttribute('src'))), { message: name }).toEqual([]);
+      await page.getByRole('button', { name: '지도로 가기' }).click();
+      await expect(page.locator('.vcard')).toHaveCount(5);
+    }
   });
 });
 

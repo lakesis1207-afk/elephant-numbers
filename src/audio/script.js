@@ -1,12 +1,15 @@
 // 앱이 하는 말(대사) 모음. 화면은 여기 있는 문장만 쓰고, 음성 목록(voiceLines.js)도 여기서 만든다.
 // 문장을 바꾸면 음성 목록과 녹음 파일도 같이 바꿔야 한다 (npm run voice:list 로 목록 다시 만들기).
 import { ADJ } from '../games/logic.js';
-import { withTopic, withSubject } from '../app/korean.js';
+import { withTopic, withSubject, withObject } from '../app/korean.js';
+import { nativeAdj } from '../games/numbers.js';
 
 // 시작·지도·마을
 export const GREETING = '안녕! 나는 코끼리야. 내 친구들을 도와줄래? 사바나 마을을 눌러 봐!';
 export const MAP_WORD = '지도';
-export const lockedVillage = (name) => `${withTopic(name)} 아직 잠겨 있어. 사바나 마을을 먼저 끝내면 열려!`;
+/** 잠긴 마을: 바로 앞 마을을 먼저 끝내라고 알려 준다 */
+export const lockedVillage = (name, prevName = '사바나 마을') =>
+  `${withTopic(name)} 아직 잠겨 있어. ${withObject(prevName)} 먼저 끝내면 열려!`;
 export const soonVillage = (name) => `${withTopic(name)} 곧 만나요!`;
 
 // 과일 세기
@@ -32,8 +35,8 @@ export function stickerLine(name, isNew, openedVillageName = null) {
   const got = isNew ? `${name} 스티커를 받았어!` : `${name} 스티커를 또 받았어!`;
   return openedVillageName ? `${got} ${withSubject(openedVillageName)} 열렸어!` : got;
 }
-export const specialLine = (villageName, friendName) => `${villageName} 친구들을 다 모았어! 특별 친구 ${friendName}이 왔어!`;
-export const bookCount = (n) => (n === 0 ? '아직 스티커가 없어. 게임을 하면 받을 수 있어!' : `스티커를 ${ADJ[n] ?? n} 개 모았어!`);
+export const specialLine = (villageName, friendName) => `${villageName} 친구들을 다 모았어! 특별 친구 ${withSubject(friendName)} 왔어!`;
+export const bookCount = (n) => (n === 0 ? '아직 스티커가 없어. 게임을 하면 받을 수 있어!' : `스티커를 ${nativeAdj(n)} 개 모았어!`);
 export const NOT_MET = '아직 못 만난 친구야!';
 
 // 놀이 시간·잠금

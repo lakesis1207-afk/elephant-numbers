@@ -18,7 +18,7 @@ async function clearSpots(page) {
   }
 }
 
-test('마지막 게임과 마지막 동물: 스티커 → 숲속 마을 열림 → 유니콘 → 마을', async ({ page }) => {
+test('마지막 게임과 마지막 동물: 스티커 → 숲속 마을 열림 → 부엉이 → 마을', async ({ page }) => {
   await startWith(page, { done: { fruit: true, pond: true }, stickers: SAVANNA.slice(0, 8) });
   await clearSpots(page);
 
@@ -27,12 +27,12 @@ test('마지막 게임과 마지막 동물: 스티커 → 숲속 마을 열림 �
   await expect(page.getByRole('img', { name: '숲속 마을이 열렸어요' })).toBeVisible();
 
   await page.getByRole('button', { name: '다음' }).click();
-  await expect(page.getByRole('img', { name: '유니콘' })).toBeVisible();
-  await expect(page.locator('.reward p')).toHaveText('특별 친구 유니콘!');
+  await expect(page.getByRole('img', { name: '부엉이' })).toBeVisible();
+  await expect(page.locator('.reward p')).toHaveText('특별 친구 부엉이!');
 
-  // 바로 또 누르면 무시하고 유니콘을 계속 보여 준다
+  // 바로 또 누르면 무시하고 부엉이를 계속 보여 준다
   await page.getByRole('button', { name: '다음' }).click();
-  await expect(page.getByRole('img', { name: '유니콘' })).toBeVisible();
+  await expect(page.getByRole('img', { name: '부엉이' })).toBeVisible();
   await page.waitForTimeout(1000);
   await page.getByRole('button', { name: '다음' }).click();
   await expect(page.locator('.gcard .star')).toHaveCount(3);

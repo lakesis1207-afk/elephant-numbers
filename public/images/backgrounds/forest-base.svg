@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9DCF2"/><stop offset="1" stop-color="#E3F5E0"/></linearGradient></defs><rect width="1600" height="1000" fill="url(#s)"/>
+<g transform="translate(180 90) scale(1.1)"><path d="M0 40 C0 10 40 0 60 20 C80 -10 140 0 140 30 C170 30 180 70 150 76 H10 C-20 76 -20 44 0 40Z" fill="#fff" stroke="#3A2A1C" stroke-width="6"/></g><g transform="translate(1240 120) scale(0.9)"><path d="M0 40 C0 10 40 0 60 20 C80 -10 140 0 140 30 C170 30 180 70 150 76 H10 C-20 76 -20 44 0 40Z" fill="#fff" stroke="#3A2A1C" stroke-width="6"/></g>
+<path d="M0 640 C300 560 520 600 800 640 C1080 680 1300 590 1600 620 V1000 H0Z" fill="#9ED37F" stroke="#3A2A1C" stroke-width="7"/>
+<path d="M0 760 C360 700 700 760 1000 740 C1260 724 1440 700 1600 720 V1000 H0Z" fill="#7CC261"/>
+<g transform="translate(90 560) scale(1.2)">
+<rect x="-14" y="40" width="28" height="90" rx="8" fill="#A8652A" stroke="#3A2A1C" stroke-width="7"/>
+<circle cx="0" cy="0" r="70" fill="#5DBB63" stroke="#3A2A1C" stroke-width="7"/><circle cx="-24" cy="-20" r="12" fill="#fff" opacity=".3"/></g><g transform="translate(250 620) scale(0.9)">
+<rect x="-14" y="40" width="28" height="90" rx="8" fill="#A8652A" stroke="#3A2A1C" stroke-width="7"/>
+<circle cx="0" cy="0" r="70" fill="#4FAE59" stroke="#3A2A1C" stroke-width="7"/><circle cx="-24" cy="-20" r="12" fill="#fff" opacity=".3"/></g><g transform="translate(1480 560) scale(1.25)">
+<rect x="-14" y="40" width="28" height="90" rx="8" fill="#A8652A" stroke="#3A2A1C" stroke-width="7"/>
+<circle cx="0" cy="0" r="70" fill="#4FAE59" stroke="#3A2A1C" stroke-width="7"/><circle cx="-24" cy="-20" r="12" fill="#fff" opacity=".3"/></g><g transform="translate(1330 640) scale(0.85)">
+<rect x="-14" y="40" width="28" height="90" rx="8" fill="#A8652A" stroke="#3A2A1C" stroke-width="7"/>
+<circle cx="0" cy="0" r="70" fill="#5DBB63" stroke="#3A2A1C" stroke-width="7"/><circle cx="-24" cy="-20" r="12" fill="#fff" opacity=".3"/></g>
+<g transform="translate(1180 820)"><rect x="-10" y="0" width="20" height="40" rx="6" fill="#FFF6E6" stroke="#3A2A1C" stroke-width="6"/><path d="M-44 4 C-44 -40 44 -40 44 4Z" fill="#FF6B5E" stroke="#3A2A1C" stroke-width="6"/><circle cx="-14" cy="-14" r="7" fill="#fff"/><circle cx="16" cy="-8" r="6" fill="#fff"/></g></svg>

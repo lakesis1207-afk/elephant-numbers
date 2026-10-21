@@ -7,6 +7,7 @@ import { RETRY_TEXT, IDLE_TEXT } from '../games/engine.js';
 import { MISSIONS } from '../app/playtime.js';
 import { SAVANNA } from '../villages/savanna.js';
 import { VILLAGES } from '../villages/index.js';
+import { villageVoiceLines } from './villageVoiceLines.js';
 
 const MAX_COUNT = 10; // 과일 최대 10개, 하마 최대 8마리
 const MAX_POND = 6; // 하마 목표 최대
@@ -16,7 +17,9 @@ const FRUITS = [
   ['apple', '사과', '가'], ['strawberry', '딸기', '가'], ['orange', '귤', '이'],
   ['banana', '바나나', '가'], ['grape', '포도', '가'], ['peach', '복숭아', '가'],
 ];
-const SPECIAL = { key: 'unicorn', name: '유니콘' };
+const SPECIAL = SAVANNA.special;
+// 특별 친구가 다른 마을 동물이면 이름 음성은 그 마을 묶음에서 이미 만든다 (중복 방지)
+const SPECIAL_IS_VILLAGE_ANIMAL = VILLAGES.some((v) => v.detail.animals.some((a) => a.key === SPECIAL.key));
 const range = (a, b) => Array.from({ length: b - a + 1 }, (_, i) => a + i);
 const line = (group, id, text) => ({ group, id, text });
 
@@ -58,14 +61,15 @@ function build() {
     ...range(1, MAX_SPOTS).map((n) => line('반짝 무늬', `spots-hint-${n}`, S.spotsHintEnd(n))),
 
     // 동물 이름·스티커
-    ...[...SAVANNA.animals, SPECIAL].map((a) => line('동물·스티커', `name-${a.key}`, a.name)),
+    ...[...SAVANNA.animals, ...(SPECIAL_IS_VILLAGE_ANIMAL ? [] : [SPECIAL])].map((a) => line('동물·스티커', `name-${a.key}`, a.name)),
     ...SAVANNA.animals.flatMap((a) => [
       line('동물·스티커', `sticker-${a.key}`, S.stickerLine(a.name, true)),
       line('동물·스티커', `sticker-again-${a.key}`, S.stickerLine(a.name, false)),
       line('동물·스티커', `sticker-${a.key}-open-forest`, S.stickerLine(a.name, true, '숲속 마을')),
       line('동물·스티커', `sticker-again-${a.key}-open-forest`, S.stickerLine(a.name, false, '숲속 마을')),
     ]),
-    line('동물·스티커', 'special-savanna', S.specialLine('사바나', SPECIAL.name)),
+    // 파일 이름에 친구 key를 넣어, 친구가 바뀌면 예전 녹음이 재생되지 않게 한다
+    line('동물·스티커', `special-savanna-${SPECIAL.key}`, S.specialLine(SAVANNA.special.from, SPECIAL.name)),
     ...range(0, SAVANNA.animals.length + 1).map((n) => line('동물·스티커', `book-${n}`, S.bookCount(n))),
     line('동물·스티커', 'not-met', S.NOT_MET),
 
@@ -73,6 +77,9 @@ function build() {
     line('시간·잠금', 'warn-1min', S.WARN_TEXT),
     ...MISSIONS.map((m, i) => line('시간·잠금', `lock-${i + 1}`, S.lockLine(m))),
     line('시간·잠금', 'unlock', S.UNLOCK_TEXT),
+
+    // 숲속·바다·극지·공룡·농장 마을 (새 묶음)
+    ...villageVoiceLines(),
   ];
 }
 

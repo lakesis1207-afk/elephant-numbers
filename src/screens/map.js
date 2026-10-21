@@ -1,6 +1,6 @@
 // 마을 지도: 마을 5개. 열린 마을은 들어가고, 잠긴 마을은 "뽀잉" + 안내
 import { h, art } from '../widgets/dom.js';
-import { VILLAGES, isVillageOpen } from '../villages/index.js';
+import { VILLAGES, isVillageOpen, previousVillage } from '../villages/index.js';
 import { lockedVillage, soonVillage } from '../audio/script.js';
 
 function villageCard(village, app) {
@@ -9,7 +9,7 @@ function villageCard(village, app) {
   const enter = () => {
     if (!open) {
       app.sfx.boing();
-      app.say(lockedVillage(village.name));
+      app.say(lockedVillage(village.name, previousVillage(village.key)?.name));
       return;
     }
     app.sfx.pop();

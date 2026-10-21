@@ -1,6 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import { finishGame } from '../../src/app/rewards.js';
 import { SAVANNA } from '../../src/villages/savanna.js';
+import { findVillage } from '../../src/villages/index.js';
 import { DEFAULT_PROGRESS, freezeProgress } from '../../src/storage/progress.js';
 
 const ALL = SAVANNA.animals.map((a) => a.key);
@@ -50,7 +51,7 @@ describe('게임을 끝냈을 때 보상', () => {
     expect(finishGame(seen, SAVANNA, 'pond', first).special).toBe(false);
   });
 
-  test('유니콘이 나오기 전에 앱을 닫았으면 다음 게임 뒤에 다시 보여 준다', () => {
+  test('특별 친구가 나오기 전에 앱을 닫았으면 다음 게임 뒤에 다시 보여 준다', () => {
     const r = finishGame(progressWith({ stickers: ALL.slice(0, 8) }), SAVANNA, 'fruit', first);
     const again = finishGame(r.progress, SAVANNA, 'pond', first);
     expect(again.special).toBe(true);
@@ -63,6 +64,37 @@ describe('게임을 끝냈을 때 보상', () => {
     expect(before.done).toEqual({});
     expect(Object.isFrozen(r.progress)).toBe(true);
     expect(Object.isFrozen(r.progress.stickers)).toBe(true);
+  });
+
+  test('숲속 → 바다·극지 → 공룡 → 농장 순서로, 앞 마을 게임 3개를 끝내면 다음 마을이 열린다', () => {
+    const chain = [['forest', 'seaOpen', 'sea'], ['sea', 'dinoOpen', 'dino'], ['dino', 'farmOpen', 'farm']];
+    chain.forEach(([key, flag, next]) => {
+      const v = findVillage(key).detail;
+      const [a, b, c] = v.games.map((g) => g.key);
+      const r = finishGame(progressWith({ done: { [a]: true, [b]: true } }), v, c, first);
+      expect(r.opened).toBe(next);
+      expect(r.progress[flag]).toBe(true);
+    });
+  });
+
+  test('농장 마을은 마지막 마을이라 끝내도 열리는 마을이 없다', () => {
+    const farm = findVillage('farm').detail;
+    const done = Object.fromEntries(farm.games.map((g) => [g.key, true]));
+    expect(finishGame(progressWith({ done }), farm, farm.games[0].key, first).opened).toBeNull();
+  });
+
+  test('다른 마을 친구를 다 모아도 사바나 특별 친구는 나오지 않는다', () => {
+    const forest = findVillage('forest').detail;
+    const all = forest.animals.map((a) => a.key);
+    const r = finishGame(progressWith({ stickers: all.slice(0, -1) }), forest, forest.games[0].key, first);
+    expect(r.isNew).toBe(true);
+    expect(r.special).toBe(false);
+    expect(r.progress.special).toBe(false);
+  });
+
+  test('다른 마을 스티커는 사바나 스티커 모으기에 섞이지 않는다', () => {
+    const r = finishGame(progressWith({ stickers: ['rabbit', 'penguin'] }), SAVANNA, 'fruit', first);
+    expect(r.sticker.key).toBe('elephant');
   });
 
   test('없는 게임 이름이면 오류를 낸다', () => {

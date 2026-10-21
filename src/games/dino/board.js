@@ -1,0 +1,38 @@
+// 숫자판 찾기 (공룡 나라, 1~100): "삼십오를 찾아서 눌러 줘!" → 숫자판에서 그 수를 누른다.
+// 숫자판은 단계에 따라 30 → 50 → 100칸으로 넓어진다. 힌트: 그 수가 있는 줄이 반짝인다.
+import { h } from '../../widgets/dom.js';
+import { pickNumber } from '../logic.js';
+import { pickHandler } from '../widgets.js';
+import { boardPrompt, BOARD_HINT } from '../../audio/villageScript.js';
+
+const ROW = 10;
+
+export const boardGame = {
+  key: 'board',
+  background: 'dino-base',
+  levels: [
+    [1, 30],
+    [1, 50],
+    [1, 100],
+  ],
+
+  ask(play, { run, bubble }, { range, last }) {
+    const n = pickNumber(range[0], range[1], last);
+    const onPick = pickHandler(run, n);
+    const cells = Array.from({ length: range[1] }, (_, i) => {
+      const v = i + 1;
+      const btn = h('button', { class: 'bcell pick', 'data-value': v, 'aria-label': String(v) }, String(v));
+      btn.addEventListener('click', () => onPick(v, btn));
+      return btn;
+    });
+    play.replaceChildren(h('div', { class: 'boardq' }, h('div', { class: `board rows${range[1] / ROW}` }, cells)));
+
+    async function hint() {
+      const row = Math.floor((n - 1) / ROW);
+      cells.slice(row * ROW, row * ROW + ROW).forEach((c) => c.classList.add('hl'));
+      bubble(BOARD_HINT, true);
+    }
+
+    return { n, prompt: boardPrompt(n), hint };
+  },
+};

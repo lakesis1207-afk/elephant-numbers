@@ -16,3 +16,6 @@ export const withTopic = (word) => word + (hasFinalConsonant(word) ? '은' : '�
 
 /** 받침에 맞춰 "이/가"를 붙인다. 예: 숲속 마을이, 공룡 나라가 */
 export const withSubject = (word) => word + (hasFinalConsonant(word) ? '이' : '가');
+
+/** 받침에 맞춰 "을/를"을 붙인다. 예: 숲속 마을을, 삼십오를 */
+export const withObject = (word) => word + (hasFinalConsonant(word) ? '을' : '를');

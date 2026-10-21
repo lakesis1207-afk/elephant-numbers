@@ -89,17 +89,16 @@
   border: 0.5cqh solid var(--ink);
   border-radius: 3.5cqh;
   width: 22cqh;
-  padding: 1.2cqh 0 1.8cqh;
+  padding: 1.5cqh 0 2cqh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1cqh;
   box-shadow: 0 0.9cqh 0 rgba(58, 42, 28, 0.25);
   box-sizing: border-box;
 }
 .opt b {
   font-weight: 400;
-  font-size: 9cqh;
+  font-size: 14cqh;
   line-height: 1;
   color: var(--ink);
 }

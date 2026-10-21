@@ -3,17 +3,13 @@ import { h, art } from '../widgets/dom.js';
 import { cheer } from '../widgets/cheer.js';
 import { stopVoice } from '../audio/voice.js';
 import { createGameRun } from '../games/engine.js';
-import { SAVANNA_GAMES } from '../games/savanna/index.js';
+import { findGame } from '../games/index.js';
 import { finishGame } from '../app/rewards.js';
 import { findVillage } from '../villages/index.js';
 
-const GAMES_BY_VILLAGE = { savanna: SAVANNA_GAMES };
-
-export function findGame(village, key) {
-  const game = GAMES_BY_VILLAGE[village]?.[key];
-  if (!game) throw new Error(`[game] 없는 게임입니다: ${village}/${key}`);
-  return game;
-}
+// 브라우저 자동 검사가 정답을 알 수 있게 게임판에 정답을 적어 둔다.
+// 개발 서버와 검사용 빌드(VITE_E2E=1)에만 넣고, 배포본에는 넣지 않는다.
+const EXPOSE_ANSWER = import.meta.env.DEV || import.meta.env.VITE_E2E === '1';
 
 let currentRun = null;
 let currentStage = null;
@@ -67,7 +63,11 @@ export const gameScreen = {
     const run = createGameRun({
       levels: game.levels,
       fx,
-      ask: (info) => game.ask(play, { run, say: app.say, bubble: bubble.set, sfx: app.sfx }, info),
+      ask: (info) => {
+        const question = game.ask(play, { run, say: app.say, bubble: bubble.set, sfx: app.sfx }, info);
+        if (EXPOSE_ANSWER) play.dataset.answer = String(question.answer ?? question.n);
+        return question;
+      },
       onProgress: (done, total) => app.bar.setDots(done, total),
       // 놀이 시간이 다 되면 하던 문제까지 끝내고 잠근다 (풀면 마을로)
       shouldPause: app.isTimeOver,

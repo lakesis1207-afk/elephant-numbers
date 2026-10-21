@@ -2,35 +2,58 @@
 
 const BASE = `${import.meta.env.BASE_URL}images/`;
 
-const CHARACTERS = [
+// 그려 둔 캐릭터 (webp)
+const DRAWN_CHARACTERS = [
   'elephant', 'giraffe', 'hippo', 'rhino', 'lion', 'tiger', 'zebra', 'lemur', 'capybara',
-  'unicorn', 'rabbit', 'penguin', 'trex', 'cow',
+  'rabbit', 'penguin', 'trex',
+  'squirrel', 'crab', 'chick', 'pig',
+  'panda', 'fox', 'owl', 'hedgehog',
+  'polarbear', 'walrus', 'whale', 'turtle', 'dolphin', 'starfish', 'seaotter',
 ];
+// 아직 그림이 없어 자리 표시용 그림(svg)을 쓰는 캐릭터. 그림을 그리면 webp로 넣고 위 목록으로 옮긴다.
+// (npm run art:villages 로 다시 만든다)
+export const PLACEHOLDER_CHARACTERS = Object.freeze([
+  'octopus',
+  'brachio', 'stego', 'ptera',
+  'dog', 'cat',
+]);
 const ICONS = [
   'play', 'check', 'home', 'close', 'map', 'star', 'lock', 'speaker', 'cake',
   'game-fruit', 'game-pond', 'game-spots',
 ];
-const BACKGROUNDS = ['savanna-base', 'savanna-fruit', 'savanna-pond', 'savanna-spots'];
+const BACKGROUNDS = [
+  'savanna-base', 'savanna-fruit', 'savanna-pond', 'savanna-spots',
+  'forest-base', 'sea-base', 'dino-base', 'farm-base',
+];
 const PROPS = [
   'fruit-apple', 'fruit-strawberry', 'fruit-orange', 'fruit-banana', 'fruit-grape', 'fruit-peach',
   'giraffe-spot', 'bush', 'pond',
+  'balloon-red', 'balloon-blue', 'balloon-yellow', 'balloon-green', 'tree', 'acorn',
+  'fish', 'shell', 'star', 'net',
+  'board', 'footprint', 'egg', 'dino-egg', 'nest',
+  'basket', 'corn',
 ];
+// 그려 둔 소품 (webp). 나머지 소품은 svg를 쓴다.
+const DRAWN_PROPS = ['fish', 'shell', 'footprint', 'dino-egg'];
 
 const KINDS = {
-  character: { dir: 'characters', ext: 'webp', names: CHARACTERS },
-  icon: { dir: 'icons', ext: 'svg', names: ICONS },
-  background: { dir: 'backgrounds', ext: 'svg', names: BACKGROUNDS },
-  prop: { dir: 'props', ext: 'svg', names: PROPS },
+  character: { dir: 'characters', names: [...DRAWN_CHARACTERS, ...PLACEHOLDER_CHARACTERS] },
+  icon: { dir: 'icons', names: ICONS },
+  background: { dir: 'backgrounds', names: BACKGROUNDS },
+  prop: { dir: 'props', names: PROPS },
 };
+
+const DRAWN = { character: DRAWN_CHARACTERS, prop: DRAWN_PROPS };
+const extOf = (kind, name) => (DRAWN[kind]?.includes(name) ? 'webp' : 'svg');
 
 /** 그림 파일 주소. 목록에 없는 이름이면 바로 오류를 내서 오타를 빨리 찾는다. */
 export function artUrl(kind, name) {
   const group = KINDS[kind];
   if (!group) throw new Error(`[art] 없는 그림 종류입니다: ${kind}`);
   if (!group.names.includes(name)) throw new Error(`[art] 없는 그림입니다: ${kind}/${name}`);
-  return `${BASE}${group.dir}/${name}.${group.ext}`;
+  return `${BASE}${group.dir}/${name}.${extOf(kind, name)}`;
 }
 
-/** 모든 그림 주소 (오프라인 저장용, 7단계 PWA에서 사용) */
+/** 모든 그림 주소 */
 export const allArtUrls = () =>
   Object.keys(KINDS).flatMap((kind) => KINDS[kind].names.map((name) => artUrl(kind, name)));

@@ -3,6 +3,7 @@ import '@fontsource/jua';
 import './styles/base.css';
 import './styles/screens.css';
 import './styles/games.css';
+import './styles/villages.css';
 import './styles/rewards.css';
 import './styles/lock.css';
 import { createProgressStore, freezeProgress } from './storage/progress.js';

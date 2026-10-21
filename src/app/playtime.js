@@ -52,6 +52,9 @@ export const resetChange = () => ({
   special: false,
   specialSeen: false,
   forestOpen: false,
+  seaOpen: false,
+  dinoOpen: false,
+  farmOpen: false,
   allOpen: false,
 });
 

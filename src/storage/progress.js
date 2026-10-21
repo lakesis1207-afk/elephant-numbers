@@ -9,9 +9,12 @@ export const freezeProgress = (p) =>
 export const DEFAULT_PROGRESS = freezeProgress({
   stickers: [],        // 받은 동물 스티커 (동물 키 목록)
   done: {},            // 끝낸 게임 { fruit: true, ... }
-  special: false,      // 특별 친구(유니콘)를 받았는지 (스티커북 칸)
-  specialSeen: false,  // 유니콘 등장 장면을 아이가 실제로 봤는지
-  forestOpen: false,   // 숲속 마을이 열렸는지
+  special: false,      // 특별 친구(부엉이)를 받았는지 (스티커북 칸)
+  specialSeen: false,  // 특별 친구 등장 장면을 아이가 실제로 봤는지
+  forestOpen: false,   // 숲속 마을이 열렸는지 (사바나를 다 끝냄)
+  seaOpen: false,      // 바다·극지 마을 (숲속을 다 끝냄)
+  dinoOpen: false,     // 공룡 나라 (바다·극지를 다 끝냄)
+  farmOpen: false,     // 농장 마을 (공룡 나라를 다 끝냄)
   allOpen: false,      // 부모님이 모든 마을을 열었는지
   music: true,         // 배경 음악
   limitMin: 15,        // 하루 놀이 시간(분)
@@ -20,7 +23,7 @@ export const DEFAULT_PROGRESS = freezeProgress({
   bonusMs: 0,          // 부모님이 더해 준 시간
 });
 
-const BOOLEAN_FIELDS = ['special', 'specialSeen', 'forestOpen', 'allOpen', 'music'];
+const BOOLEAN_FIELDS = ['special', 'specialSeen', 'forestOpen', 'seaOpen', 'dinoOpen', 'farmOpen', 'allOpen', 'music'];
 const isPlainObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
 const isCount = (v) => typeof v === 'number' && Number.isFinite(v) && v >= 0;
 

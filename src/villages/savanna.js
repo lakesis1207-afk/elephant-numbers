@@ -13,8 +13,12 @@ export const SAVANNA = Object.freeze({
     { key: 'lemur', name: '여우원숭이' },
     { key: 'capybara', name: '카피바라' },
   ],
+  // 동물을 다 모으면 오는 특별 친구 (다른 마을은 아직 없음)
+  // from: "사바나 친구들을 다 모았어!"의 앞말
+  special: { key: 'owl', name: '부엉이', from: '사바나' },
   story: {
     title: '코끼리 생일파티를 준비해요!',
+    icon: { kind: 'icon', name: 'cake' },
     enterVoice: '사바나 마을이야! 코끼리 생일파티를 준비하자. 친구들을 도와줘!',
     storyVoice: '코끼리 생일파티를 준비해요! 과일도 세고, 하마도 도와주고, 기린 무늬도 맞혀 봐!',
   },

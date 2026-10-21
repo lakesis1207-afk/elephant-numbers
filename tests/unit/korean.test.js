@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { withTopic, withSubject } from '../../src/app/korean.js';
+import { withTopic, withSubject, withObject } from '../../src/app/korean.js';
 
 describe('은/는 붙이기', () => {
   test('받침이 있으면 "은"', () => {
@@ -16,5 +16,12 @@ describe('이/가 붙이기', () => {
   test('받침이 있으면 "이", 없으면 "가"', () => {
     expect(withSubject('숲속 마을')).toBe('숲속 마을이');
     expect(withSubject('공룡 나라')).toBe('공룡 나라가');
+  });
+});
+
+describe('을/를 붙이기', () => {
+  test('받침이 있으면 "을", 없으면 "를"', () => {
+    expect(withObject('숲속 마을')).toBe('숲속 마을을');
+    expect(withObject('삼십오')).toBe('삼십오를');
   });
 });

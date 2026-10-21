@@ -27,6 +27,7 @@ export default defineConfig({
     {
       command: `npm run build && npx vite preview --port ${BUILT_PORT} --strictPort --base ${SUB_PATH}`,
       url: `http://localhost:${BUILT_PORT}${SUB_PATH}`,
+      env: { VITE_E2E: '1' }, // 검사용 빌드에만 정답 표시(data-answer)를 넣는다
       reuseExistingServer: false,
       timeout: 120_000,
     },

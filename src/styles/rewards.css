@@ -89,6 +89,39 @@
   border-radius: 50%;
   height: 17cqh;
 }
+/* 스티커북 쪽 넘기기 (마을 버튼) */
+.screen.book {
+  flex-direction: row;
+  align-items: center;
+  gap: 3cqh;
+}
+.btabs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4cqh;
+}
+.btab {
+  width: 11cqh;
+  height: 11cqh;
+  border-radius: 50%;
+  background: rgba(255, 252, 244, 0.85);
+  border: 0.45cqh solid var(--ink);
+  display: grid;
+  place-items: center;
+  opacity: 0.6;
+  box-sizing: border-box;
+}
+.btab.on {
+  opacity: 1;
+  background: var(--sun);
+  transform: scale(1.08);
+}
+.btab img {
+  height: 8.5cqh;
+}
+.btab img.round {
+  border-radius: 50%;
+}
 .bookclose {
   position: absolute;
   right: 3cqh;
