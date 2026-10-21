@@ -38,3 +38,33 @@ test('한 번 열면 인터넷이 끊겨도 앱이 열리고 게임까지 할 �
   expect(await page.evaluate(() => document.fonts.check('16px Jua', '코끼리'))).toBe(true);
   await context.setOffline(false);
 });
+
+test('녹음은 따로 저장되어, 인터넷이 끊겨도 아이 목소리(녹음)로 나온다', async ({ page, context }) => {
+  await page.addInitScript(() => {
+    window.__played = [];
+    const start = AudioBufferSourceNode.prototype.start;
+    AudioBufferSourceNode.prototype.start = function (...args) {
+      window.__played.push(this.buffer.duration);
+      return start.apply(this, args);
+    };
+  });
+  await page.goto('./');
+  await page.evaluate(async () => {
+    await navigator.serviceWorker.ready;
+  });
+  await page.reload();
+  await expect.poll(() => page.evaluate(() => Boolean(navigator.serviceWorker.controller))).toBe(true);
+  const counts = await page.evaluate(async () => {
+    const list = await (await fetch('./audio/voice/manifest.json')).json();
+    const saved = await (await caches.open('elephant-voice')).keys();
+    return { list: list.length, saved: saved.length };
+  });
+  expect(counts.list).toBeGreaterThan(0);
+  expect(counts.saved).toBe(counts.list);
+
+  await context.setOffline(true);
+  await page.reload();
+  await page.getByRole('button', { name: '시작' }).click();
+  await expect.poll(() => page.evaluate(() => window.__played.length)).toBeGreaterThan(0);
+  await context.setOffline(false);
+});

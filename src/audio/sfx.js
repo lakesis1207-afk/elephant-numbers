@@ -1,18 +1,8 @@
 // 효과음과 배경 음악: 파일 없이 브라우저에서 소리를 만들어 낸다(시제품과 같은 소리).
 // 정식 효과음 파일은 public/audio/sfx에 넣고 나중에 교체한다.
+import { audioContext } from './context.js';
 
-let context = null;
 let musicTimer = null;
-
-function audioContext() {
-  if (!context) {
-    const Ctx = globalThis.AudioContext || globalThis.webkitAudioContext;
-    if (!Ctx) return null;
-    context = new Ctx();
-  }
-  if (context.state === 'suspended') context.resume();
-  return context;
-}
 
 function tone(freq, startIn, duration, type = 'sine', volume = 0.2, endFreq = 0) {
   const ctx = audioContext();
