@@ -64,9 +64,20 @@ img {
 .bar .spacer {
   flex: 1;
 }
+/* 자물쇠(부모)·홈 버튼: 아이 손가락에 맞게 크게. 둘레에 눈에 안 보이는 누르는 자리를 조금 더 둔다. */
+.pbtn,
+.backbtn {
+  position: relative;
+}
+.pbtn::after,
+.backbtn::after {
+  content: '';
+  position: absolute;
+  inset: -1cqh;
+}
 .pbtn {
-  width: 7cqh;
-  height: 7cqh;
+  width: 9cqh;
+  height: 9cqh;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.6);
   padding: 0.6cqh;

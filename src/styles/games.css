@@ -17,8 +17,8 @@
   background: var(--sun);
 }
 .backbtn {
-  width: 8cqh;
-  height: 8cqh;
+  width: 11cqh;
+  height: 11cqh;
 }
 .backbtn[hidden] {
   display: none;
