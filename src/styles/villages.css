@@ -103,20 +103,24 @@
   height: 15cqh;
 }
 /* 물고기 묶기 — 그물은 세로로 쌓고(최대 3개), 낱개는 4마리씩 */
+/* 물고기 그물: 세로로 선 그물(2줄 × 5칸)을 옆으로 나란히 둬서, 세 개여도 숫자 버튼을 가리지 않고 물고기를 크게 */
 .tray.sea .netgroup {
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
   max-width: none;
+  gap: 2cqh;
 }
 .tray.sea .tenbox.net {
-  width: 48cqh;
+  width: 23cqh;
+  grid-template-columns: repeat(2, 1fr);
 }
 .tray.sea .loosegroup {
   gap: 1.2cqh;
-  max-width: 65cqh;
+  max-width: 42cqh;
 }
 .tray.sea .loose {
-  width: 15cqh;
-  height: 15cqh;
+  width: 13cqh;
+  height: 13cqh;
 }
 /* 열씩 세기 — 상자 6개까지는 1.5배, 7개 이상이면 화면에 들어가게 조금만 */
 .tray.boxes .tenbox.shellbox {
