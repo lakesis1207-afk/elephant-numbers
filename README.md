@@ -26,7 +26,7 @@ npm run build      # dist/ 에 완성본
 
 ## 바꿔 끼우기
 - **그림**: `public/images/` 안의 파일을 같은 이름으로 바꾸면 됩니다. 앱 아이콘은 코끼리 그림을 바꾼 뒤 `npm run icons`.
-- **목소리**: 클로바 더빙으로 녹음했습니다(`docs/클로바 더빙 대본.md`). 묶음별 zip을 프로젝트 밖 `../녹음 원본/`에 두고 `npm run voice:split`을 하면 문장마다 `public/audio/voice/<파일 이름>.mp3`로 나눕니다. 녹음은 오프라인 저장본에도 들어갑니다. 녹음이 없는 문장(시간·잠금 안내)은 기기 기본 음성으로 읽습니다. 대사를 바꾸면 `npm run voice:list`로 목록·대본을 다시 만듭니다.
+- **목소리**: Azure 음성(서현, 아이 목소리)으로 만들었습니다. 키를 환경 변수(`AZURE_SPEECH_KEY`, `AZURE_SPEECH_REGION`)로 넣고 `npm run voice:azure`를 하면 아직 만들지 않은 문장만 `public/audio/voice/<파일 이름>.mp3`로 만듭니다(기록: 프로젝트 밖 `../녹음 원본/azure-done.json`). 녹음은 오프라인 저장본에도 들어갑니다. 대사를 바꾸면 `npm run voice:list`로 목록을 다시 만듭니다.
 
 ## 배포
 `main` 브랜치에 올리면 GitHub Actions가 검사·빌드 후 GitHub Pages에 반영합니다
