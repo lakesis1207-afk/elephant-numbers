@@ -52,12 +52,14 @@ async function saveVoice() {
   }));
 }
 
+// 새 버전은 다 받으면 기다리지 않고 바로 바뀐다 (홈 화면 앱은 완전히 닫히지 않아 예전 화면이 계속 남았다).
+// 화면은 offline.js가 한 번 새로고침해 준다.
 self.addEventListener('install', (event) => {
+  self.skipWaiting();
   event.waitUntil(saveApp().then(saveVoice));
 });
 
-// 새 버전은 앱을 쓰는 중에 끼어들지 않고, 앱을 완전히 닫았다 다시 열 때 바뀐다.
-// 바뀐 뒤에 예전 앱 저장본과, 지금 목록에 없는 녹음을 지운다.
+// 바뀐 뒤에 예전 앱 저장본과, 지금 목록에 없는 녹음을 지우고, 열려 있는 화면을 새 버전이 맡는다.
 async function cleanUp() {
   const keys = await caches.keys();
   await Promise.all(keys.filter((k) => k.startsWith('elephant-') && k !== CACHE && k !== VOICE_CACHE).map((k) => caches.delete(k)));
@@ -65,7 +67,7 @@ async function cleanUp() {
   const keep = new Set(VOICE.map(voiceUrl));
   await Promise.all((await voice.keys()).filter((r) => !keep.has(r.url)).map((r) => voice.delete(r)));
 }
-self.addEventListener('activate', (event) => event.waitUntil(cleanUp()));
+self.addEventListener('activate', (event) => event.waitUntil(cleanUp().then(() => self.clients.claim())));
 
 // 저장본에 없는 녹음은 인터넷에서 받아 오면서 저장해 둔다 (설치 때 못 받은 것)
 function voiceKeyOf(url) {
@@ -94,11 +96,19 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(fetch(request).catch(() => caches.match(request)));
     return;
   }
-  // 그 밖에는 저장본 먼저 (인터넷이 없어도 열린다). 페이지 열기는 index.html로.
+  // 페이지 열기(index.html)는 인터넷 먼저: 새 버전이 있으면 바로 보인다. 인터넷이 없을 때만 저장본.
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request, { cache: 'no-cache' }).catch(() =>
+        caches.match(request, { ignoreSearch: true, ignoreVary: true })
+          .then((hit) => hit || caches.match('./index.html', { ignoreVary: true }))),
+    );
+    return;
+  }
+  // 그 밖에는 저장본 먼저 (인터넷이 없어도 열린다. 앱 파일은 이름에 내용 해시가 있어 늘 맞는 버전).
   // ignoreSearch: 녹음은 "?v=버전"을 붙여 저장했으므로. ignoreVary: 서버가 붙이는 Vary 때문에 못 찾는 일이 없게
   event.respondWith(
     caches.match(request, { ignoreSearch: true, ignoreVary: true })
-      .then((hit) => hit || (request.mode === 'navigate' ? caches.match('./index.html', { ignoreVary: true }) : null))
       .then((hit) => hit || fetchAndKeep(request)),
   );
 });
