@@ -10,7 +10,8 @@ import { createProgressStore, freezeProgress } from './storage/progress.js';
 import { localDay } from './app/time.js';
 import { createRouter, blockBackButton } from './app/router.js';
 import { createClock, timeState } from './app/playtime.js';
-import { sfx, setMusic } from './audio/sfx.js';
+import { sfx } from './audio/sfx.js';
+import { audioContext } from './audio/context.js';
 import { say } from './audio/voice.js';
 import { WARN_TEXT } from './audio/script.js';
 import { art } from './widgets/dom.js';
@@ -78,8 +79,7 @@ const app = {
   openParentMenu: () => parentMenu.open(),
   lock: (from = router.current) => router.go('lock', { resume: resumeTarget(from) }),
   isTimeOver: () => timeState(progress) === 'over',
-  startSound: () => setMusic(progress.music),
-  setMusic,
+  startSound: () => audioContext(), // 첫 터치에 소리 장치를 깨워 둔다 (배경 음악은 없음)
   say,
   sfx,
   toast: createToast($('toast')),

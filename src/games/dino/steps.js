@@ -6,7 +6,7 @@ import { numberOptions, pickHandler } from '../widgets.js';
 import { sinoWord } from '../numbers.js';
 import { stepsQuestion } from '../questions.js';
 import { HINT_START_MS, HINT_STEP_MS } from '../shared/counting.js';
-import { STEPS_PROMPT, STEPS_HINT_END } from '../../audio/villageScript.js';
+import { STEPS_PROMPT, STEPS_PROMPT_MID, STEPS_HINT_END } from '../../audio/villageScript.js';
 
 export const stepsGame = {
   key: 'steps',
@@ -44,6 +44,6 @@ export const stepsGame = {
       bubble(STEPS_HINT_END, true);
     }
 
-    return { n: q.answer, prompt: STEPS_PROMPT, hint };
+    return { n: q.answer, prompt: q.blank === q.numbers.length - 1 ? STEPS_PROMPT : STEPS_PROMPT_MID, hint };
   },
 };

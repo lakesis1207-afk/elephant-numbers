@@ -196,6 +196,9 @@
 .pondq {
   position: relative;
   height: 100%;
+  /* 넓은 휴대폰 화면에서도 하마가 왼쪽 끝에 붙지 않게 가운데 쪽으로 모은다 */
+  width: min(100%, 124cqh);
+  margin-inline: auto;
 }
 .pond {
   position: absolute;

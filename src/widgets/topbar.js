@@ -10,7 +10,7 @@ export function createTopbar(el, app) {
       class: 'pbtn',
       'aria-label': '부모님 메뉴, 2초 동안 누르고 있기',
       onclick: () => {
-        if (!consumeHeld(lock)) app.toast('부모님은 2초 동안 누르고 있어 주세요');
+        if (!consumeHeld(lock)) app.toast('2초간 꾹 눌러주세요');
       },
     },
     art('icon', 'settings', { class: 'ico' }),

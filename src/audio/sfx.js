@@ -1,8 +1,6 @@
-// 효과음과 배경 음악: 파일 없이 브라우저에서 소리를 만들어 낸다(시제품과 같은 소리).
+// 효과음(배경 음악은 없음): 파일 없이 브라우저에서 소리를 만들어 낸다(시제품과 같은 소리).
 // 정식 효과음 파일은 public/audio/sfx에 넣고 나중에 교체한다.
 import { audioContext } from './context.js';
-
-let musicTimer = null;
 
 function tone(freq, startIn, duration, type = 'sine', volume = 0.2, endFreq = 0) {
   const ctx = audioContext();
@@ -45,20 +43,3 @@ export const sfx = Object.freeze({
   ding: safely(() => tone(880, 0, 0.3, 'sine', 0.15)),
 });
 
-const MELODY = [392, 440, 523, 587, 659, 587, 523, 440, 392, 330, 392, 440];
-const BEAT_MS = 600;
-
-/** 잔잔한 배경 음악 켜기/끄기. 화면이 안 보이면 쉰다. */
-export function setMusic(on) {
-  clearInterval(musicTimer);
-  musicTimer = null;
-  if (!on) return;
-  let i = 0;
-  musicTimer = setInterval(() => {
-    if (document.hidden) return;
-    const f = MELODY[i % MELODY.length];
-    tone(f, 0, 0.55, 'triangle', 0.035);
-    if (i % 4 === 0) tone(f / 2, 0, 0.9, 'sine', 0.03);
-    i += 1;
-  }, BEAT_MS);
-}

@@ -12,6 +12,7 @@ const HIP_H = 18;
 const HIP_STEP_X = 16;
 const HIP_STEP_Y = 19;
 const POND_ROW = 4;
+const HOME_LEFT = 6; // 기다리는 하마 자리를 왼쪽 끝에서 조금 띄운다
 const DRAG_START_PX = 8;
 const HINT_START_MS = 2000;
 const HINT_STEP_MS = 750;
@@ -38,7 +39,7 @@ export const pondGame = {
     play.replaceChildren(pq);
 
     const unit = () => (pq.closest('.stage')?.clientHeight ?? 800) / 100; // 1cqh를 픽셀로
-    const home = (i) => ({ x: (i % 2) * HIP_STEP_X * unit(), y: Math.floor(i / 2) * HIP_STEP_Y * unit() + 2 * unit() });
+    const home = (i) => ({ x: (HOME_LEFT + (i % 2) * HIP_STEP_X) * unit(), y: Math.floor(i / 2) * HIP_STEP_Y * unit() + 2 * unit() });
     // 웅덩이 안: 들어간 하마 m마리를 한 줄에 4마리씩, 물 한가운데를 중심으로 모아 놓는다
     const slot = (j, m) => {
       const u = unit();

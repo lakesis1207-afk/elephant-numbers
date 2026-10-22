@@ -2,7 +2,7 @@
 import { feedGame } from './feed.js';
 import { makeAddSubGame } from '../shared/addsub.js';
 import { makeCompareGame } from '../shared/compare.js';
-import { BASKET_ADD, BASKET_SUB, FARM_MORE, FARM_FEWER } from '../../audio/villageScript.js';
+import { basketAdd, basketSub, FARM_MORE, FARM_FEWER } from '../../audio/villageScript.js';
 
 // 달걀 바구니 (doll-math "바구니 더하기·빼기")
 const basketGame = makeAddSubGame({
@@ -15,7 +15,7 @@ const basketGame = makeAddSubGame({
   ],
   item: { kind: 'prop', name: 'egg' },
   container: { kind: 'prop', name: 'basket' },
-  prompts: { add: BASKET_ADD, sub: BASKET_SUB },
+  prompts: { add: basketAdd, sub: basketSub },
 });
 
 // 누가 더 많아? (doll-math "어느 쪽이 많아?" 복습): 병아리 줄과 돼지 줄 비교

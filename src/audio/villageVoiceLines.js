@@ -9,6 +9,14 @@ import { VILLAGES, previousVillage, nextVillage } from '../villages/index.js';
 
 const range = (a, b, step = 1) => Array.from({ length: Math.floor((b - a) / step) + 1 }, (_, i) => a + i * step);
 const line = (group, id, text) => ({ group, id, text });
+const MAX_ADD_SUB = 10;
+// 더하기: 처음 a개 + b개 (합 10 이하) / 빼기: 처음 a개 - b개 (남는 것 1개 이상)
+const ADD_PAIRS = range(1, MAX_ADD_SUB - 1).flatMap((a) => range(1, MAX_ADD_SUB - a).map((b) => [a, b]));
+const SUB_PAIRS = range(2, MAX_ADD_SUB).flatMap((a) => range(1, a - 1).map((b) => [a, b]));
+const addSubLines = (g, key, add, sub) => [
+  ...ADD_PAIRS.map(([a, b]) => line(g, `${key}-add-${a}-${b}`, add(a, b))),
+  ...SUB_PAIRS.map(([a, b]) => line(g, `${key}-sub-${a}-${b}`, sub(a, b))),
+];
 
 const MAX_FOREST = 20; // 풍선·도토리
 const MAX_FISH = 39; // 물고기 묶기
@@ -64,18 +72,17 @@ function dinoLines() {
   return [
     ...range(1, MAX_BOARD).map((n) => line(g, `board-q-${n}`, V.boardPrompt(n))),
     line(g, 'board-hint', V.BOARD_HINT),
-    line(g, 'steps-q', V.STEPS_PROMPT),
+    line(g, 'steps-q-end', V.STEPS_PROMPT),
+    line(g, 'steps-q-mid', V.STEPS_PROMPT_MID),
     line(g, 'steps-hint-end', V.STEPS_HINT_END),
-    line(g, 'eggs-add', V.EGGS_ADD),
-    line(g, 'eggs-sub', V.EGGS_SUB),
+    ...addSubLines(g, 'eggs', V.eggsAdd, V.eggsSub),
   ];
 }
 
 function farmLines() {
   const g = '농장 마을';
   return [
-    line(g, 'basket-add', V.BASKET_ADD),
-    line(g, 'basket-sub', V.BASKET_SUB),
+    ...addSubLines(g, 'basket', V.basketAdd, V.basketSub),
     line(g, 'farm-more', V.FARM_MORE),
     line(g, 'farm-fewer', V.FARM_FEWER),
     line(g, 'feed-q', V.FEED_PROMPT),

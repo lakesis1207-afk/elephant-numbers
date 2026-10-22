@@ -67,10 +67,6 @@ export function createParentMenu(stage, app) {
         apply((q) => ({ allOpen: !q.allOpen }));
         if (app.current.name === 'map') app.refresh();
       })),
-      row('배경 음악', toggle(p.music, '배경 음악', () => {
-        apply((q) => ({ music: !q.music }));
-        app.setMusic(app.progress.music);
-      })),
       inGame ? row('게임 그만하고 나가기', h('button', { onclick: () => { close(); app.go('village', { village: app.current.params.village ?? 'savanna' }); } }, '마을로 나가기')) : null,
       row('진행 기록 지우기', resetBtn),
       h('button', { class: 'close', onclick: close }, '닫기'),

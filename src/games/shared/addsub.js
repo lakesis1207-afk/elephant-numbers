@@ -16,7 +16,7 @@ const nativeWord = (k) => NATIVE[k];
 /**
  * @param item {kind,name} 세는 물건 그림
  * @param container {kind,name} 담는 곳 그림 (둥지, 바구니)
- * @param prompts { add, sub } 묻는 말
+ * @param prompts { add, sub } 묻는 말 (처음 수, 바뀐 수) => 문장
  */
 export function makeAddSubGame({ key, background, levels, item, container, prompts }) {
   return {
@@ -58,7 +58,7 @@ export function makeAddSubGame({ key, background, levels, item, container, promp
         bubble(fruitHintEnd(q.answer), true);
       }
 
-      return { n: q.answer, answer: q.answer, prompt: q.op === 'add' ? prompts.add : prompts.sub, hint };
+      return { n: q.answer, answer: q.answer, prompt: (q.op === 'add' ? prompts.add : prompts.sub)(q.start, q.change), hint };
     },
   };
 }

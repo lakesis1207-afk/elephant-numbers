@@ -43,7 +43,7 @@ test('자물쇠를 톡 누르면 안내만, 2초 누르면 부모님 메뉴가 �
   const lock = page.getByRole('button', { name: '부모님 메뉴, 2초 동안 누르고 있기' });
 
   await lock.click();
-  await expect(page.locator('#toast')).toHaveText('부모님은 2초 동안 누르고 있어 주세요');
+  await expect(page.locator('#toast')).toHaveText('2초간 꾹 눌러주세요');
   await expect(page.getByRole('dialog', { name: '부모님 메뉴' })).toBeHidden();
 
   await hold(page, lock);
@@ -52,15 +52,13 @@ test('자물쇠를 톡 누르면 안내만, 2초 누르면 부모님 메뉴가 �
   await expect(menu).toContainText('오늘 남은 놀이 시간');
 });
 
-test('부모님 메뉴: 모든 마을 열기, 배경 음악, 기록 지우기(두 번 확인)', async ({ page }) => {
+test('부모님 메뉴: 모든 마을 열기, 기록 지우기(두 번 확인)', async ({ page }) => {
   await startWith(page, { stickers: ['elephant'], done: { fruit: true } });
   await hold(page, page.getByRole('button', { name: '부모님 메뉴, 2초 동안 누르고 있기' }));
   const menu = page.getByRole('dialog', { name: '부모님 메뉴' });
 
   await menu.getByRole('button', { name: '모든 마을 열기' }).click();
   await expect(menu.getByRole('button', { name: '모든 마을 열기' })).toHaveAttribute('aria-pressed', 'true');
-  await menu.getByRole('button', { name: '배경 음악' }).click();
-  await expect(menu.getByRole('button', { name: '배경 음악' })).toHaveAttribute('aria-pressed', 'false');
 
   await menu.getByRole('button', { name: '지우기' }).click();
   await menu.getByRole('button', { name: '한 번 더 누르면 지워져요' }).click();
@@ -68,7 +66,7 @@ test('부모님 메뉴: 모든 마을 열기, 배경 음악, 기록 지우기(�
   await expect(page.locator('.vcard:not(.locked)')).toHaveCount(1);
 
   const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('elephant-numbers')));
-  expect(saved).toMatchObject({ stickers: [], done: {}, allOpen: false, music: false });
+  expect(saved).toMatchObject({ stickers: [], done: {}, allOpen: false });
 });
 
 test('부모님 메뉴: 모든 마을 열기를 켜면 지도에서 바로 열리고, 닫기로 닫힌다', async ({ page }) => {

@@ -45,14 +45,19 @@ export const boardPrompt = (n) => `${withObject(sinoWord(n))} 찾아서 눌러 �
 export const BOARD_HINT = '반짝이는 줄에서 찾아봐!';
 
 // 공룡: 발자국 빈칸
-export const STEPS_PROMPT = '발자국에 빠진 숫자는 뭘까?';
+export const STEPS_PROMPT = '발자국을 따라가 봐! 마지막 숫자는 뭘까?'; // 빈칸이 맨 끝일 때
+export const STEPS_PROMPT_MID = '발자국을 따라가 봐! 빈 발자국의 숫자는 뭘까?'; // 빈칸이 가운데일 때
 export const STEPS_HINT_END = '빈칸에 들어갈 숫자를 골라 봐!';
 
 // 공룡·농장: 더하기·빼기
-export const EGGS_ADD = '둥지에 알이 있어. 알이 더 왔어! 이제 알은 몇 개일까?';
-export const EGGS_SUB = '둥지에 알이 있었는데 아기 공룡이 몇 개 가져갔어! 남은 알은 몇 개일까?';
-export const BASKET_ADD = '바구니에 달걀이 있어. 암탉이 달걀을 더 낳았어! 이제 달걀은 몇 개일까?';
-export const BASKET_SUB = '바구니에 달걀이 있었는데 강아지가 몇 개 가져갔어! 남은 달걀은 몇 개일까?';
+// 더하기·빼기: 숫자와 "더하면/빼면"이 들어간 문장. 예) 바구니에 달걀이 열 개 있어. 다섯 개를 빼면 모두 몇 개일까?
+const pieces = (n) => `${nativeAdj(n)} 개`;
+const addSubLine = (place, thing, verb) => (start, change) =>
+  `${place}에 ${thing}이 ${pieces(start)} 있어. ${pieces(change)}를 ${verb} 모두 몇 개일까?`;
+export const eggsAdd = addSubLine('둥지', '알', '더하면');
+export const eggsSub = addSubLine('둥지', '알', '빼면');
+export const basketAdd = addSubLine('바구니', '달걀', '더하면');
+export const basketSub = addSubLine('바구니', '달걀', '빼면');
 
 // 농장: 반짝 몇 개? (1~10)
 export const FEED_PROMPT = '옥수수가 몇 개였을까? 다시 보고 싶으면 보자기를 눌러!';

@@ -91,7 +91,7 @@
 }
 /* 크게 보여 주기: 도토리 세기(숲속) — 상자 48cqh + 낱개 4개씩 최대 3줄 */
 .tray.forest .tenbox {
-  width: 48cqh;
+  width: 53cqh; /* 안의 도토리 ≈ 물고기 그물 속 물고기 크기 */
   align-self: center; /* 낱개 줄이 길어도 상자가 세로로 늘어나지 않게 */
 }
 .tray.forest .loosegroup {
@@ -99,8 +99,8 @@
   max-width: 65cqh;
 }
 .tray.forest .loose {
-  width: 15cqh;
-  height: 15cqh;
+  width: 10.5cqh; /* 낱개는 묶음 속과 비슷하게 (물고기 묶기와 같은 크기) */
+  height: 10.5cqh;
 }
 /* 물고기 묶기 — 그물은 세로로 쌓고(최대 3개), 낱개는 4마리씩 */
 /* 물고기 그물: 세로로 선 그물(2줄 × 5칸)을 옆으로 나란히 둬서, 세 개여도 숫자 버튼을 가리지 않고 물고기를 크게 */
@@ -116,11 +116,11 @@
 }
 .tray.sea .loosegroup {
   gap: 1.2cqh;
-  max-width: 42cqh;
+  max-width: 35cqh;
 }
 .tray.sea .loose {
-  width: 13cqh;
-  height: 13cqh;
+  width: 10.5cqh; /* 도토리 세기 낱개와 같은 크기 */
+  height: 10.5cqh;
 }
 /* 열씩 세기 — 상자 6개까지는 1.5배, 7개 이상이면 화면에 들어가게 조금만 */
 .tray.boxes .tenbox.shellbox {
@@ -462,25 +462,33 @@
   flex-direction: column;
   justify-content: space-around;
 }
+/* 발자국: 왼쪽에서 오른쪽으로 걸어가는 모양. 발끝이 오른쪽을 보고, 왼발·오른발이 위아래로 번갈아 찍힌다 */
 .steprow {
   display: flex;
   justify-content: center;
-  gap: 2.4cqh;
+  gap: 1cqh;
 }
 .step {
   display: block;
   position: relative;
-  width: 23cqh;
+  width: 24cqh;
   height: 30cqh;
-  transform: translateY(calc(var(--i) * -2cqh + 4cqh)) rotate(calc(var(--i) * 4deg - 8deg));
+  transform: translateY(-6cqh);
+}
+.step:nth-child(even) {
+  transform: translateY(6cqh);
 }
 .step img {
   width: 100%;
   height: 100%;
+  transform: rotate(90deg) scale(0.9);
+}
+.step:nth-child(even) img {
+  transform: rotate(90deg) scale(0.9) scaleX(-1); /* 반대쪽 발 */
 }
 .step b {
   position: absolute;
-  inset: 15cqh 0 auto;
+  inset: 11cqh 0 auto;
   text-align: center;
   line-height: 1;
   font-weight: 400;
