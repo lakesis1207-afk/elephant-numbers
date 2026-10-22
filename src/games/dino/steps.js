@@ -15,7 +15,7 @@ export const stepsGame = {
   levels: [
     [1, 10, 'end'],
     [1, 20, 'any'],
-    [10, 100, 'any'],
+    [10, 50, 'any'],
   ],
 
   ask(play, { run, say, bubble }, { range, last }) {

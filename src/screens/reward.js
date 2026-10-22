@@ -62,7 +62,8 @@ export const rewardScreen = {
       else app.go('village', { village });
     };
 
-    root.append(h('div', { class: 'glowbg' }), img, text, badge, roundButton('play', '다음', next));
+    // badge가 없을 때(null) append에 넣으면 "null" 글자가 찍히므로 빼고 넣는다
+    root.append(...[h('div', { class: 'glowbg' }), img, text, badge, roundButton('play', '다음', next)].filter(Boolean));
     celebrate();
     app.say(stickerLine(sticker.name, isNew, openedVillage?.name));
   },

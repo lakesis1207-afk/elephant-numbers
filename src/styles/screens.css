@@ -75,9 +75,20 @@ img {
   position: absolute;
   inset: -1cqh;
 }
+/* 막대는 커진 버튼만큼 높지만, 빈 곳은 아래 게임판을 누를 수 있게 통과시킨다 */
+.bar {
+  height: 20cqh;
+  align-items: flex-start;
+  padding-top: 1cqh;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+.bar > * {
+  pointer-events: auto;
+}
 .pbtn {
-  width: 9cqh;
-  height: 9cqh;
+  width: 18cqh;
+  height: 18cqh;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.6);
   padding: 0.6cqh;
@@ -153,8 +164,8 @@ img {
   width: 100%;
 }
 .vcard {
-  width: 27cqh;
-  height: 36cqh;
+  width: 30cqh;
+  height: 41cqh;
   border-radius: 4cqh;
   background: var(--card);
   border: 0.5cqh solid var(--ink);
@@ -164,7 +175,7 @@ img {
   justify-content: center;
   gap: 1cqh;
   box-shadow: 0 1cqh 0 rgba(58, 42, 28, 0.25);
-  font-size: 2.8cqh;
+  font-size: 3.2cqh;
   color: var(--soft);
   position: relative;
   box-sizing: border-box;
@@ -174,10 +185,10 @@ img {
   transform: translateY(-3cqh);
 }
 .vcard img {
-  height: 20cqh;
+  height: 23cqh;
 }
 .vcard img.round {
-  width: 20cqh;
+  width: 23cqh;
   border-radius: 50%;
   object-fit: cover;
   border: 0.5cqh solid var(--ink);

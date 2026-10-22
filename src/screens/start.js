@@ -27,6 +27,8 @@ export const startScreen = {
       app.go('map');
       app.say(GREETING);
     };
+    // 링크를 열자마자는 브라우저가 막으므로, 시작 화면 어디든 처음 누르는 순간 전체 화면으로
+    root.addEventListener('pointerdown', enterFullscreen, { once: true });
     root.append(
       art('character', 'elephant', { class: 'hero', alt: '코끼리' }),
       h('h1', {}, '코끼리와 숫자 친구들'),

@@ -18,7 +18,7 @@ export const PLACEHOLDER_CHARACTERS = Object.freeze([
   'dog', 'cat',
 ]);
 const ICONS = [
-  'play', 'check', 'home', 'close', 'map', 'star', 'lock', 'speaker', 'cake',
+  'play', 'check', 'home', 'close', 'map', 'star', 'lock', 'settings', 'speaker', 'cake',
   'game-fruit', 'game-pond', 'game-spots',
 ];
 const BACKGROUNDS = [

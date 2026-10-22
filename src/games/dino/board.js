@@ -1,5 +1,5 @@
-// 숫자판 찾기 (공룡 나라, 1~100): "삼십오를 찾아서 눌러 줘!" → 숫자판에서 그 수를 누른다.
-// 숫자판은 단계에 따라 30 → 50 → 100칸으로 넓어진다. 힌트: 그 수가 있는 줄이 반짝인다.
+// 숫자판 찾기 (공룡 나라, 1~50): "삼십오를 찾아서 눌러 줘!" → 숫자판에서 그 수를 누른다.
+// 숫자판은 단계에 따라 20 → 30 → 50칸으로 넓어진다. 힌트: 그 수가 있는 줄이 반짝인다.
 import { h } from '../../widgets/dom.js';
 import { pickNumber } from '../logic.js';
 import { pickHandler } from '../widgets.js';
@@ -11,9 +11,9 @@ export const boardGame = {
   key: 'board',
   background: 'dino-base',
   levels: [
+    [1, 20],
     [1, 30],
     [1, 50],
-    [1, 100],
   ],
 
   ask(play, { run, bubble }, { range, last }) {
@@ -25,7 +25,9 @@ export const boardGame = {
       btn.addEventListener('click', () => onPick(v, btn));
       return btn;
     });
-    play.replaceChildren(h('div', { class: 'boardq' }, h('div', { class: `board rows${range[1] / ROW}` }, cells)));
+    // 찾아야 할 숫자를 판 옆 빈 곳에 크게 보여 준다
+    const target = h('div', { class: 'btarget', 'aria-hidden': 'true' }, String(n));
+    play.replaceChildren(h('div', { class: 'boardq' }, target, h('div', { class: `board rows${range[1] / ROW}` }, cells)));
 
     async function hint() {
       const row = Math.floor((n - 1) / ROW);

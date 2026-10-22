@@ -27,8 +27,8 @@
   filter: drop-shadow(0 0 1.2cqh #ffe07a) drop-shadow(0 0 0.6cqh #ffe07a);
 }
 .opt.pict {
-  width: 20cqh;
-  height: 20cqh;
+  width: 24cqh;
+  height: 24cqh;
   padding: 2cqh;
   justify-content: center;
 }
@@ -108,7 +108,7 @@
   max-width: none;
 }
 .tray.sea .tenbox.net {
-  width: 40cqh;
+  width: 48cqh;
 }
 .tray.sea .loosegroup {
   gap: 1.2cqh;
@@ -120,10 +120,10 @@
 }
 /* 열씩 세기 — 상자 6개까지는 1.5배, 7개 이상이면 화면에 들어가게 조금만 */
 .tray.boxes .tenbox.shellbox {
-  width: 37cqh;
+  width: 44cqh;
 }
 .tray.boxes:has(> .shellbox:nth-child(7)) .tenbox.shellbox {
-  width: 28cqh;
+  width: 33cqh;
 }
 .netgroup,
 .loosegroup {
@@ -163,6 +163,20 @@
   position: relative;
   width: 20cqh;
   height: 28cqh;
+  /* 버튼째 천천히 떠다닌다 (누르는 자리도 함께 움직여서 그림과 어긋나지 않는다) */
+  animation: balloon-drift 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -1.3s);
+}
+@keyframes balloon-drift {
+  25% {
+    translate: 4cqh -4cqh;
+  }
+  50% {
+    translate: 0 -7cqh;
+  }
+  75% {
+    translate: -4cqh -3cqh;
+  }
 }
 .bfloat {
   position: absolute;
@@ -311,11 +325,11 @@
 /* 크게(약 2배) 보여 주려고 5개씩 두 줄로 놓는다 (최대 10개) */
 .citems {
   display: grid;
-  grid-template-columns: repeat(5, 16cqh);
+  grid-template-columns: repeat(5, 18cqh);
   gap: 0.8cqh;
 }
 .citem {
-  height: 16cqh;
+  height: 18cqh;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -323,7 +337,7 @@
 }
 .citem img {
   width: 100%;
-  height: 16cqh; /* .citem 높이와 같게. 100%는 격자 칸 안에서 계산되지 않아 직접 쓴다 */
+  height: 18cqh; /* .citem 높이와 같게. 100%는 격자 칸 안에서 계산되지 않아 직접 쓴다 */
   object-fit: contain; /* 세로로 긴 그림(병아리)도 칸 밖으로 나가지 않게 */
 }
 .citem.pair {
@@ -351,8 +365,8 @@
   border: 0.5cqh solid var(--ink);
 }
 .pcell {
-  width: 12.5cqh;
-  height: 12.5cqh;
+  width: 16cqh;
+  height: 16cqh;
   display: grid;
   place-items: center;
   border-radius: 2cqh;
@@ -373,19 +387,34 @@
 }
 .pcell.blank b {
   font-weight: 400;
-  font-size: 8cqh;
+  font-size: 10cqh;
   color: var(--coral);
 }
 
 /* 숫자판 찾기 */
 .boardq {
   height: 100%;
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5cqh;
+}
+.btarget {
+  flex: none;
+  width: 21cqh;
+  padding: 2cqh 0;
+  border-radius: 3cqh;
+  background: var(--card);
+  border: 0.6cqh solid var(--ink);
+  font-size: 13cqh;
+  line-height: 1;
+  text-align: center;
+  color: var(--coral);
+  -webkit-text-stroke: 0.3cqh var(--ink);
 }
 .board {
   display: grid;
-  grid-template-columns: repeat(10, 11.4cqh);
+  grid-template-columns: repeat(10, 9.2cqh);
   gap: 0.6cqh;
   padding: 1.6cqh;
   border-radius: 3cqh;
@@ -398,7 +427,7 @@
   border-radius: 1.4cqh;
   background: #fff;
   border: 0.35cqh solid #d8c8a8;
-  font-size: 8cqh;
+  font-size: 7cqh;
   color: var(--ink);
 }
 .board.rows10 .bcell {
@@ -437,8 +466,8 @@
 .step {
   display: block;
   position: relative;
-  width: 20cqh;
-  height: 26cqh;
+  width: 23cqh;
+  height: 30cqh;
   transform: translateY(calc(var(--i) * -2cqh + 4cqh)) rotate(calc(var(--i) * 4deg - 8deg));
 }
 .step img {
@@ -447,11 +476,11 @@
 }
 .step b {
   position: absolute;
-  inset: 13cqh 0 auto;
+  inset: 15cqh 0 auto;
   text-align: center;
   line-height: 1;
   font-weight: 400;
-  font-size: 8cqh;
+  font-size: 9cqh;
   color: #fff;
   -webkit-text-stroke: 0.45cqh var(--ink);
   paint-order: stroke fill;
@@ -520,6 +549,20 @@
 .asitem.new {
   filter: drop-shadow(0 0 1cqh #ffe07a);
 }
+/* 더하기: 새로 온 것은 처음엔 없다가(누를 수도 없다) 톡 나타난다 */
+.asitem.wait {
+  visibility: hidden;
+  pointer-events: none;
+}
+.asitem.appear {
+  animation: as-appear 0.6s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+@keyframes as-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(-6cqh) scale(0.3);
+  }
+}
 .asitem.gone {
   opacity: 0.25;
   filter: grayscale(1);
@@ -568,7 +611,7 @@
 .plate {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(5, 11cqh);
+  grid-template-columns: repeat(5, 14cqh);
   gap: 1.4cqh;
   padding: 3cqh 4cqh;
   border-radius: 50% / 40%;
@@ -577,7 +620,7 @@
   box-shadow: 0 1cqh 0 rgba(58, 42, 28, 0.25), inset 0 0 0 1.6cqh #f4e7cf;
 }
 .fcell {
-  height: 13cqh;
+  height: 16cqh;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -592,7 +635,7 @@
 }
 .cloth {
   position: absolute;
-  inset: -1.4cqh;
+  inset: -1.8cqh;
   border-radius: 4cqh;
   border: 0.6cqh solid var(--ink);
   background: repeating-linear-gradient(0deg, rgba(255, 110, 90, 0.5) 0 3cqh, transparent 3cqh 6cqh),
@@ -604,6 +647,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .balloon,
   .bfloat,
   .balloon.right .bfloat,
   .balloon.right .bfloat > img,

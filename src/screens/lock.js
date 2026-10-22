@@ -1,4 +1,4 @@
-// 잠금 화면: 놀이 시간이 다 되면. 잠든 코끼리 + 화면 밖 미션. 부모님이 3초 누르면 다시 논다.
+// 잠금 화면: 놀이 시간이 다 되면. 잠든 코끼리 + 화면 밖 미션. 부모님이 2초 누르면 다시 논다.
 import { h, art } from '../widgets/dom.js';
 import { holdable, PARENT_HOLD_MS } from '../widgets/hold.js';
 import { pickMission, unlockChange } from '../app/playtime.js';
@@ -21,7 +21,7 @@ export const lockScreen = {
 
   render(root, app, { resume = { name: 'map', params: {} } } = {}) {
     const mission = pickMission();
-    const hold = h('button', { class: 'hold', 'aria-label': '부모님: 3초 동안 누르면 다시 놀 수 있어요' }, '🔒 부모님: 3초 동안 누르기');
+    const hold = h('button', { class: 'hold', 'aria-label': '부모님: 2초 동안 누르면 다시 놀 수 있어요' }, '🔒 부모님: 2초 동안 누르기');
     holdable(hold, PARENT_HOLD_MS, () => {
       app.update((p) => unlockChange(p));
       app.sfx.yes();

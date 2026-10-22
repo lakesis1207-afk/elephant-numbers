@@ -16,9 +16,13 @@
 .qdots i.on {
   background: var(--sun);
 }
-.backbtn {
-  width: 11cqh;
-  height: 11cqh;
+/* 홈: 설정 버튼과 같은 크기로, 설정 바로 아래 (왼쪽 칸에 세로로 둔다) */
+.bar .backbtn {
+  position: absolute;
+  left: 3cqh;
+  top: 21cqh;
+  width: 18cqh;
+  height: 18cqh;
 }
 .backbtn[hidden] {
   display: none;
@@ -42,7 +46,7 @@
   justify-content: center;
 }
 .guide img {
-  height: 26cqh;
+  height: 22cqh;
   transform-origin: bottom;
 }
 .guide.happy img {
@@ -56,7 +60,7 @@
 .bubble {
   position: absolute;
   left: 3cqh;
-  top: 13cqh;
+  top: 41cqh; /* 왼쪽 위 설정·홈 버튼 아래 */
   width: 25cqh;
   box-sizing: border-box;
   background: var(--card);
@@ -158,8 +162,8 @@
 }
 .fruit {
   position: relative;
-  width: 18cqh;
-  height: 18cqh;
+  width: 23cqh;
+  height: 23cqh;
   transition: transform 0.15s;
 }
 .fruit img {
@@ -197,8 +201,8 @@
   position: absolute;
   right: 0;
   top: 3cqh;
-  width: 66cqh;
-  height: 50cqh;
+  width: 84cqh;
+  height: 64cqh;
 }
 .pond img {
   width: 100%;
@@ -227,8 +231,8 @@
 }
 .hip {
   position: absolute;
-  width: 12cqh;
-  height: 14cqh;
+  width: 15cqh; /* pond.js HIP_W */
+  height: 18cqh; /* pond.js HIP_H */
   display: grid;
   place-items: center;
   cursor: grab;
@@ -260,18 +264,20 @@
 .spotq {
   height: 100%;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  align-content: center;
   grid-template-rows: 1fr auto;
   gap: 2cqh 5cqh;
   align-items: center;
 }
 .spotq .gir {
-  height: 40cqh;
+  height: 52cqh;
 }
 .card {
   justify-self: start;
-  width: 40cqh;
-  height: 40cqh;
+  width: 52cqh;
+  height: 52cqh;
   border-radius: 4cqh;
   background: #ffd66b;
   border: 0.7cqh solid var(--ink);
@@ -288,8 +294,8 @@
   place-items: center;
 }
 .card .spot {
-  width: 9cqh;
-  height: 9cqh;
+  width: 12cqh;
+  height: 12cqh;
   transition: transform 0.2s;
 }
 .card .spot.hl {

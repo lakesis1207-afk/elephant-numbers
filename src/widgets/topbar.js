@@ -3,17 +3,17 @@ import { h, art } from './dom.js';
 import { holdable, consumeHeld, PARENT_HOLD_MS } from './hold.js';
 
 export function createTopbar(el, app) {
-  // 부모 메뉴: 3초 동안 누르고 있어야 열린다. 아이가 톡 누르면 안내만.
+  // 부모 메뉴: 2초 동안 누르고 있어야 열린다. 아이가 톡 누르면 안내만.
   const lock = h(
     'button',
     {
       class: 'pbtn',
-      'aria-label': '부모님 메뉴, 3초 동안 누르고 있기',
+      'aria-label': '부모님 메뉴, 2초 동안 누르고 있기',
       onclick: () => {
-        if (!consumeHeld(lock)) app.toast('부모님은 3초 동안 누르고 있어 주세요');
+        if (!consumeHeld(lock)) app.toast('부모님은 2초 동안 누르고 있어 주세요');
       },
     },
-    art('icon', 'lock', { class: 'ico' }),
+    art('icon', 'settings', { class: 'ico' }),
   );
   holdable(lock, PARENT_HOLD_MS, () => app.openParentMenu());
 

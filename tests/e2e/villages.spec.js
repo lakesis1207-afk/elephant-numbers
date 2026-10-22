@@ -24,7 +24,7 @@ const answerOf = (page) => page.locator('.play').getAttribute('data-answer');
 
 async function pickRight(page) {
   const answer = await answerOf(page);
-  await page.locator(`.play .pick[data-value="${answer}"]`).click();
+  await page.locator(`.play .pick[data-value="${answer}"]`).click({ force: true }); // 풍선은 계속 떠다녀서 멈추기를 기다리지 않는다
 }
 
 for (const [village, name, key] of GAMES) {
@@ -38,10 +38,10 @@ for (const [village, name, key] of GAMES) {
     // 첫 문제: 두 번 틀린다 → 힌트가 끝나면 정답을 누를 수 있다
     const answer = await answerOf(page);
     const wrong = page.locator(`.play .pick:not([data-value="${answer}"])`).first();
-    await wrong.click();
+    await wrong.click({ force: true });
     await expect(page.locator('.bubble')).toContainText('다시 세어 볼까?');
     await page.waitForTimeout(800); // 첫 오답 뒤 잠깐 누르기를 막는다
-    await wrong.click();
+    await wrong.click({ force: true });
     await expect(async () => {
       await pickRight(page);
       await expect(page.locator('.qdots i.on')).toHaveCount(1, { timeout: 600 });
