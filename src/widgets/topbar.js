@@ -2,15 +2,25 @@
 import { h, art } from './dom.js';
 import { holdable, consumeHeld, PARENT_HOLD_MS } from './hold.js';
 
+const PARENT_TIP = '2초간 꾹 눌러주세요';
+const TIP_MS = 2000; // 안내 말풍선이 보이는 시간
+
 export function createTopbar(el, app) {
-  // 부모 메뉴: 2초 동안 누르고 있어야 열린다. 아이가 톡 누르면 안내만.
+  // 부모 메뉴: 2초 동안 누르고 있어야 열린다. 아이가 톡 누르면 설정 버튼 바로 옆에 안내 말풍선만.
+  const tip = h('span', { class: 'ptip', role: 'status', hidden: true }, PARENT_TIP);
+  let tipTimer = null;
+  const showTip = () => {
+    tip.hidden = false;
+    clearTimeout(tipTimer);
+    tipTimer = setTimeout(() => { tip.hidden = true; }, TIP_MS);
+  };
   const lock = h(
     'button',
     {
       class: 'pbtn',
       'aria-label': '부모님 메뉴, 2초 동안 누르고 있기',
       onclick: () => {
-        if (!consumeHeld(lock)) app.toast('2초간 꾹 눌러주세요');
+        if (!consumeHeld(lock)) showTip();
       },
     },
     art('icon', 'settings', { class: 'ico' }),
@@ -37,7 +47,7 @@ export function createTopbar(el, app) {
     count,
   );
 
-  el.replaceChildren(lock, back, h('div', { class: 'spacer' }), dots, book);
+  el.replaceChildren(lock, tip, back, h('div', { class: 'spacer' }), dots, book);
 
   return {
     update({ visible, showBook = true }) {

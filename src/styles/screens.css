@@ -86,6 +86,44 @@ img {
 .bar > * {
   pointer-events: auto;
 }
+/* 설정 버튼을 톡 누르면 바로 오른쪽에 뜨는 안내 말풍선 */
+.ptip {
+  position: absolute;
+  left: 23cqh;
+  top: 5.5cqh;
+  padding: 1.6cqh 2.4cqh;
+  border-radius: 2.4cqh;
+  background: var(--card);
+  border: 0.45cqh solid var(--ink);
+  font-size: 3.6cqh;
+  white-space: nowrap;
+  color: var(--ink);
+  pointer-events: none;
+  z-index: 6;
+  animation: ptip-in 0.2s ease-out;
+}
+.ptip[hidden] {
+  display: none;
+}
+/* 말풍선 꼬리: 설정 버튼 쪽(왼쪽)을 가리킨다 */
+.ptip::before {
+  content: '';
+  position: absolute;
+  left: -1.6cqh;
+  top: 50%;
+  width: 2.4cqh;
+  height: 2.4cqh;
+  background: var(--card);
+  border-left: 0.45cqh solid var(--ink);
+  border-bottom: 0.45cqh solid var(--ink);
+  transform: translateY(-50%) rotate(45deg);
+}
+@keyframes ptip-in {
+  from {
+    opacity: 0;
+    transform: translateX(-1.5cqh);
+  }
+}
 .pbtn {
   width: 18cqh;
   height: 18cqh;

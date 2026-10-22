@@ -43,7 +43,8 @@ test('자물쇠를 톡 누르면 안내만, 2초 누르면 부모님 메뉴가 �
   const lock = page.getByRole('button', { name: '부모님 메뉴, 2초 동안 누르고 있기' });
 
   await lock.click();
-  await expect(page.locator('#toast')).toHaveText('2초간 꾹 눌러주세요');
+  await expect(page.locator('.ptip')).toHaveText('2초간 꾹 눌러주세요');
+  await expect(page.locator('.ptip')).toBeVisible();
   await expect(page.getByRole('dialog', { name: '부모님 메뉴' })).toBeHidden();
 
   await hold(page, lock);
