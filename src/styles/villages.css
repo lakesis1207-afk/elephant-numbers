@@ -545,6 +545,39 @@
   max-width: 74cqh;
   justify-content: center;
 }
+/* 알·달걀은 바구니(둥지) 몸통 안에 5개씩 두 줄로 담는다. 묶음 칸은 없애고 한 줄로 이어 놓는다 */
+.asbox.in-basket .ascont,
+.asbox.in-nest .ascont {
+  width: 84cqh;
+  bottom: 1cqh;
+}
+.asbox.in-basket .asitems,
+.asbox.in-nest .asitems {
+  position: absolute;
+  left: 50%;
+  translate: -50% 0;
+  width: 56cqh;
+  max-width: none;
+  gap: 1cqh 1.2cqh;
+  align-content: flex-end;
+}
+.asbox.in-basket .asitems {
+  bottom: 8cqh;
+  height: 26cqh;
+}
+.asbox.in-nest .asitems {
+  bottom: 9cqh;
+  height: 26cqh;
+}
+.asbox.in-basket .asgroup,
+.asbox.in-nest .asgroup {
+  display: contents;
+}
+.asbox.in-basket .asitem,
+.asbox.in-nest .asitem {
+  width: 10cqh;
+  height: 12cqh;
+}
 .asop {
   font-weight: 400;
   font-size: 9cqh;

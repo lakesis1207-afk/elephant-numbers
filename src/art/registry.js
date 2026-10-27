@@ -19,8 +19,7 @@ const ICONS = [
   'game-fruit', 'game-pond', 'game-spots',
 ];
 const BACKGROUNDS = [
-  'savanna-base', 'savanna-fruit', 'savanna-pond', 'savanna-spots',
-  'forest-base', 'sea-base', 'dino-base', 'farm-base',
+  'savanna-base', 'forest-base', 'sea-base', 'dino-base', 'farm-base',
 ];
 const PROPS = [
   'fruit-apple', 'fruit-strawberry', 'fruit-orange', 'fruit-banana', 'fruit-grape', 'fruit-peach',
@@ -32,6 +31,9 @@ const PROPS = [
 ];
 // 그려 둔 소품 (webp). 나머지 소품은 svg를 쓴다.
 const DRAWN_PROPS = ['fish', 'shell', 'footprint', 'dino-egg'];
+// 그려 둔 아이콘·배경 (webp)
+const DRAWN_ICONS = ['settings', 'speaker', 'star'];
+const DRAWN_BACKGROUNDS = BACKGROUNDS; // 배경은 모두 그림
 
 const KINDS = {
   character: { dir: 'characters', names: [...DRAWN_CHARACTERS, ...PLACEHOLDER_CHARACTERS] },
@@ -40,7 +42,7 @@ const KINDS = {
   prop: { dir: 'props', names: PROPS },
 };
 
-const DRAWN = { character: DRAWN_CHARACTERS, prop: DRAWN_PROPS };
+const DRAWN = { character: DRAWN_CHARACTERS, prop: DRAWN_PROPS, icon: DRAWN_ICONS, background: DRAWN_BACKGROUNDS };
 const extOf = (kind, name) => (DRAWN[kind]?.includes(name) ? 'webp' : 'svg');
 
 /** 그림 파일 주소. 목록에 없는 이름이면 바로 오류를 내서 오타를 빨리 찾는다. */

@@ -25,7 +25,7 @@ function mark(item, k) {
 
 export const fruitGame = {
   key: 'fruit',
-  background: 'savanna-fruit',
+  background: 'savanna-base',
   levels: [
     [1, 5],
     [3, 7],

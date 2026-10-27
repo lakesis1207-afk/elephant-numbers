@@ -65,9 +65,8 @@
   width: 15cqh;
   height: 15cqh;
   border-radius: 50%;
-  background: var(--card);
-  border: 0.5cqh solid var(--ink);
-  box-shadow: 0 0.8cqh 0 rgba(58, 42, 28, 0.25);
+  /* 스피커 그림에 하늘색 동그라미가 들어 있어 따로 테두리를 그리지 않는다 */
+  filter: drop-shadow(0 0.8cqh 0 rgba(58, 42, 28, 0.2));
   display: grid;
   place-items: center;
   padding: 0;
@@ -83,8 +82,8 @@
 }
 
 .bubble .spk {
-  width: 10cqh;
-  height: 10cqh;
+  width: 100%;
+  height: 100%;
 }
 
 /* 숫자 보기 (숫자 + 텐프레임) */

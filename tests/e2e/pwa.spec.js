@@ -31,10 +31,12 @@ test('한 번 열면 인터넷이 끊겨도 앱이 열리고 게임까지 할 �
   await page.getByRole('button', { name: '과일 세기' }).click();
   await expect(page.locator('.tray .fruit').first()).toBeVisible();
 
-  const broken = await page.locator('img').evaluateAll((imgs) =>
-    imgs.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.getAttribute('src')),
-  );
-  expect(broken).toEqual([]);
+  // 큰 배경 그림은 저장본에서 읽어 와도 그리는 데 잠깐 걸리므로, 다 뜰 때까지 기다리며 확인한다
+  const broken = () =>
+    page.locator('img').evaluateAll((imgs) =>
+      imgs.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.getAttribute('src')),
+    );
+  await expect.poll(broken, { timeout: 5000 }).toEqual([]);
   expect(await page.evaluate(() => document.fonts.check('16px Jua', '코끼리'))).toBe(true);
   await context.setOffline(false);
 });

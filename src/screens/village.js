@@ -7,7 +7,9 @@ function gameCard(game, village, app) {
     app.sfx.pop();
     app.go('game', { village, game: game.key });
   };
-  const scene = game.scene.map((item) => art(item.kind, item.name, { style: item.style }));
+  // 카드 그림 칸: 마을 배경을 깔고 그 위에 동물·소품을 올린다
+  const backdrop = art('background', `${village}-base`, { class: 'scenebg', alt: '' });
+  const scene = [backdrop, ...game.scene.map((item) => art(item.kind, item.name, { style: item.style }))];
   return h(
     'button',
     { class: 'gcard press', 'data-game': game.key, 'aria-label': game.name, onclick: play },

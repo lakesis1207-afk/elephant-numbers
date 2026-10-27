@@ -21,7 +21,7 @@ const WATER = { cx: 0.5, cy: 0.52, rx: 0.42, ry: 0.38 };
 
 export const pondGame = {
   key: 'pond',
-  background: 'savanna-pond',
+  background: 'savanna-base',
   levels: [
     [1, 3],
     [2, 5],

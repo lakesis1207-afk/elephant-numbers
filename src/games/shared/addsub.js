@@ -41,7 +41,7 @@ export function makeAddSubGame({ key, background, levels, item, container, promp
       if (added.length) groups.push(h('span', { class: 'asgroup' }, added));
       if (taken.length) groups.push(h('span', { class: 'asgroup' }, taken));
 
-      const box = h('div', { class: `asbox ${q.op}` }, art(container.kind, container.name, { class: 'ascont' }), h('div', { class: 'asitems' }, groups));
+      const box = h('div', { class: `asbox ${q.op} in-${container.name}` }, art(container.kind, container.name, { class: 'ascont' }), h('div', { class: 'asitems' }, groups));
       play.replaceChildren(h('div', { class: 'asq' }, box, numberOptions(q.answer, 1, MAX, pickHandler(run, q.answer))));
       setTimeout(() => {
         if (run.state.stopped) return;

@@ -14,7 +14,7 @@ const HINT_END_MS = 600;
 
 export const spotsGame = {
   key: 'spots',
-  background: 'savanna-spots',
+  background: 'savanna-base',
   levels: [
     [1, 3],
     [2, 5],
