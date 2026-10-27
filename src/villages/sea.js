@@ -1,4 +1,4 @@
-// 바다·극지 마을 (3단계, 10씩 100까지): 펭귄의 물고기 잔치
+// 바닷가 마을 (3단계, 10씩 100까지): 펭귄의 물고기 잔치
 
 export const SEA = Object.freeze({
   key: 'sea',
@@ -17,7 +17,7 @@ export const SEA = Object.freeze({
   story: {
     title: '펭귄의 물고기 잔치예요!',
     icon: { kind: 'prop', name: 'fish' },
-    enterVoice: '바다·극지 마을이야! 펭귄이 물고기 잔치를 열어. 친구들을 도와줘!',
+    enterVoice: '바닷가 마을이야! 펭귄이 물고기 잔치를 열어. 친구들을 도와줘!',
     storyVoice: '펭귄의 물고기 잔치예요! 무늬도 잇고, 물고기를 열 마리씩 묶어 봐!',
   },
   games: [

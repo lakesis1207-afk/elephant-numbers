@@ -1,7 +1,7 @@
 import { test, expect } from './fixtures.js';
 import { startWith } from './helpers.js';
 
-// 숲속·바다·극지·공룡·농장 마을 게임 12개: 첫 문제는 두 번 틀려 힌트를 보고, 5문제를 맞혀 별을 받는다.
+// 숲속·바닷가·공룡·농장 마을 게임 12개: 첫 문제는 두 번 틀려 힌트를 보고, 5문제를 맞혀 별을 받는다.
 // 게임판(.play)의 data-answer가 정답이고, 고르는 버튼은 .pick[data-value].
 test.setTimeout(90_000);
 
@@ -9,15 +9,15 @@ const GAMES = [
   ['숲속 마을', '풍선 터뜨리기', 'balloon'],
   ['숲속 마을', '어느 쪽이 많아?', 'trees'],
   ['숲속 마을', '도토리 세기', 'acorns'],
-  ['바다·극지 마을', '무늬 잇기', 'pattern'],
-  ['바다·극지 마을', '물고기 묶기', 'fishnet'],
-  ['바다·극지 마을', '열씩 세기', 'shells'],
+  ['바닷가 마을', '무늬 잇기', 'pattern'],
+  ['바닷가 마을', '물고기 묶기', 'fishnet'],
+  ['바닷가 마을', '열씩 세기', 'shells'],
   ['공룡 나라', '숫자판 찾기', 'board'],
   ['공룡 나라', '발자국 빈칸', 'steps'],
   ['공룡 나라', '알 더하기·빼기', 'eggs'],
   ['농장 마을', '달걀 바구니', 'basket'],
   ['농장 마을', '누가 더 많아?', 'farmcompare'],
-  ['농장 마을', '반짝 몇 개?', 'feed'],
+  ['농장 마을', '숫자 찾기', 'rowfind'],
 ];
 
 const answerOf = (page) => page.locator('.play').getAttribute('data-answer');
@@ -59,9 +59,9 @@ for (const [village, name, key] of GAMES) {
   });
 }
 
-test('숲속 마을 게임 3개를 다 끝내면 바다·극지 마을이 열린다', async ({ page }) => {
+test('숲속 마을 게임 3개를 다 끝내면 바닷가 마을이 열린다', async ({ page }) => {
   await startWith(page, { forestOpen: true, done: { balloon: true, trees: true } });
-  await page.getByRole('button', { name: '바다·극지 마을, 잠김' }).waitFor();
+  await page.getByRole('button', { name: '바닷가 마을, 잠김' }).waitFor();
   await page.getByRole('button', { name: '숲속 마을', exact: true }).click();
   await page.getByRole('button', { name: '도토리 세기', exact: true }).click();
   for (let q = 1; q <= 5; q++) {
@@ -81,21 +81,10 @@ test('스티커북: 마을 버튼으로 쪽을 넘기고, 마을에서 열면 �
   await expect(page.locator('.slot')).toHaveCount(6);
   await expect(page.locator('.slot.has')).toHaveCount(1);
 
-  await page.getByRole('button', { name: '바다·극지 마을 스티커' }).click();
+  await page.getByRole('button', { name: '바닷가 마을 스티커' }).click();
   await expect(page.locator('.slot')).toHaveCount(10);
   await expect(page.locator('.slot.has')).toHaveCount(2);
 
   await page.getByRole('button', { name: '스티커북 닫기' }).click();
   await expect(page.locator('.gcard')).toHaveCount(3);
-});
-
-test('반짝 몇 개?: 보자기가 덮이기 직전에 틀려도 보자기는 덮인다', async ({ page }) => {
-  await startWith(page, { allOpen: true });
-  await page.getByRole('button', { name: '농장 마을', exact: true }).click();
-  await page.getByRole('button', { name: '반짝 몇 개?', exact: true }).click();
-  const answer = await answerOf(page);
-  // 처음 2초 보여 주는 동안, 끝나기 0.5초 전쯤에 틀린 답을 누른다 (0.7초 잠김과 겹치게)
-  await page.waitForTimeout(1500);
-  await page.locator(`.play .pick:not([data-value="${answer}"])`).first().click();
-  await expect(page.locator('.cloth')).toBeVisible({ timeout: 3000 });
 });

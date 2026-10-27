@@ -9,7 +9,7 @@ export const IDLE_REMIND_MS = 8000;
 /** 첫 오답 뒤 잠깐 누르기를 막는 시간 (연타가 바로 두 번째 오답이 되지 않게) */
 export const RETRY_LOCK_MS = 700;
 export const RETRY_TEXT = '다시 세어 볼까?';
-export const IDLE_TEXT = '말풍선을 누르면 다시 들을 수 있어!';
+export const IDLE_TEXT = '스피커를 누르면 다시 들을 수 있어!';
 
 /**
  * @param levels 난이도 단계별 수 범위 [[1,3],[2,5],...]

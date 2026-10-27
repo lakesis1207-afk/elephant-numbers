@@ -78,7 +78,7 @@ function build() {
     ...MISSIONS.map((m, i) => line('시간·잠금', `lock-${i + 1}`, S.lockLine(m))),
     line('시간·잠금', 'unlock', S.UNLOCK_TEXT),
 
-    // 숲속·바다·극지·공룡·농장 마을 (새 묶음)
+    // 숲속·바닷가·공룡·농장 마을 (새 묶음)
     ...villageVoiceLines(),
   ];
 }

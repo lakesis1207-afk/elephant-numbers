@@ -10,7 +10,7 @@ import { FARM } from './farm.js';
 export const VILLAGES = Object.freeze([
   { key: 'savanna', name: '사바나 마을', character: 'elephant', round: false, detail: SAVANNA, openFlag: null },
   { key: 'forest', name: '숲속 마을', character: 'rabbit', round: false, detail: FOREST, openFlag: 'forestOpen' },
-  { key: 'sea', name: '바다·극지 마을', character: 'penguin', round: false, detail: SEA, openFlag: 'seaOpen' },
+  { key: 'sea', name: '바닷가 마을', character: 'penguin', round: false, detail: SEA, openFlag: 'seaOpen' },
   { key: 'dino', name: '공룡 나라', character: 'trex', round: false, detail: DINO, openFlag: 'dinoOpen' },
   { key: 'farm', name: '농장 마을', character: 'pig', round: false, detail: FARM, openFlag: 'farmOpen' },
 ]);

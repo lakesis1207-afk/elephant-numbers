@@ -65,7 +65,7 @@ test.describe('시작 → 지도 → 사바나 마을', () => {
 
   test('모든 마을을 열면 다섯 마을 모두 게임 카드 3개가 있고, 그림이 다 보인다', async ({ page }) => {
     await startWith(page, { allOpen: true });
-    for (const name of ['숲속 마을', '바다·극지 마을', '공룡 나라', '농장 마을']) {
+    for (const name of ['숲속 마을', '바닷가 마을', '공룡 나라', '농장 마을']) {
       await page.getByRole('button', { name, exact: true }).click();
       await expect(page.locator('.gcard')).toHaveCount(3);
       await expect(page.locator('.screen.village .story')).toBeVisible();

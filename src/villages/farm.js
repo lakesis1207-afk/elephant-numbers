@@ -32,11 +32,11 @@ export const FARM = Object.freeze({
       ],
     },
     {
-      key: 'feed',
-      name: '반짝 몇 개?',
+      key: 'rowfind',
+      name: '숫자 찾기',
       scene: [
         { kind: 'character', name: 'pig', style: 'height:20cqh;left:0;bottom:2cqh' },
-        { kind: 'prop', name: 'corn', style: 'right:1cqh;bottom:3cqh;width:10cqh;height:12cqh' },
+        { kind: 'prop', name: 'board', style: 'right:0;bottom:3cqh;width:15cqh;height:15cqh' },
       ],
     },
   ],

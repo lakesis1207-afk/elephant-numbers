@@ -66,7 +66,7 @@ describe('게임을 끝냈을 때 보상', () => {
     expect(Object.isFrozen(r.progress.stickers)).toBe(true);
   });
 
-  test('숲속 → 바다·극지 → 공룡 → 농장 순서로, 앞 마을 게임 3개를 끝내면 다음 마을이 열린다', () => {
+  test('숲속 → 바닷가 → 공룡 → 농장 순서로, 앞 마을 게임 3개를 끝내면 다음 마을이 열린다', () => {
     const chain = [['forest', 'seaOpen', 'sea'], ['sea', 'dinoOpen', 'dino'], ['dino', 'farmOpen', 'farm']];
     chain.forEach(([key, flag, next]) => {
       const v = findVillage(key).detail;

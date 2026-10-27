@@ -1,4 +1,4 @@
-// 바다·극지 마을 게임 3종 (key는 villages/sea.js의 games[].key와 같다)
+// 바닷가 마을 게임 3종 (key는 villages/sea.js의 games[].key와 같다)
 import { patternGame } from './pattern.js';
 import { fishnetGame } from './fishnet.js';
 import { shellsGame } from './shells.js';

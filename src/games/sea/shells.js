@@ -1,4 +1,4 @@
-// 열씩 세기 (바다·극지, 10~50): 조개가 열 개씩 든 상자들. 상자를 눌러 "십, 이십, 삼십…" 하고 세어 숫자를 고른다.
+// 열씩 세기 (바닷가, 10~50): 조개가 열 개씩 든 상자들. 상자를 눌러 "십, 이십, 삼십…" 하고 세어 숫자를 고른다.
 import { h, art } from '../../widgets/dom.js';
 import { pickNumber, wait } from '../logic.js';
 import { numberButtons, pickHandler } from '../widgets.js';

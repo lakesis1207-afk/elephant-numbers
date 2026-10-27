@@ -1,4 +1,4 @@
-// 음성 목록 중 숲속·바다·극지·공룡·농장 마을 부분. (voiceLines.js가 이어 붙인다)
+// 음성 목록 중 숲속·바닷가·공룡·농장 마을 부분. (voiceLines.js가 이어 붙인다)
 // 이미 녹음한 묶음(시작·지도, 수 세기, 동물·스티커 …)은 그대로 두고, 새 문장은 새 묶음에 넣는다.
 // 그래야 예전 녹음 zip을 다시 나눠도 줄 수가 맞는다.
 import * as S from './script.js';
@@ -21,7 +21,7 @@ const addSubLines = (g, key, add, sub) => [
 const MAX_FOREST = 20; // 풍선·도토리
 const MAX_FISH = 39; // 물고기 묶기
 const MAX_BOARD = 100;
-const MAX_FEED = 10;
+const MAX_ROWFIND = 50; // 숫자 찾기
 
 function villageLines() {
   const later = VILLAGES.slice(1);
@@ -53,7 +53,7 @@ function forestLines() {
 }
 
 function seaLines() {
-  const g = '바다·극지 마을';
+  const g = '바닷가 마을';
   return [
     line(g, 'pattern-q', V.PATTERN_PROMPT),
     line(g, 'pattern-hint', V.PATTERN_HINT),
@@ -85,9 +85,8 @@ function farmLines() {
     ...addSubLines(g, 'basket', V.basketAdd, V.basketSub),
     line(g, 'farm-more', V.FARM_MORE),
     line(g, 'farm-fewer', V.FARM_FEWER),
-    line(g, 'feed-q', V.FEED_PROMPT),
-    line(g, 'feed-hint', V.FEED_HINT),
-    ...range(1, MAX_FEED).map((n) => line(g, `feed-hint-${n}`, V.feedHintEnd(n))),
+    ...range(1, MAX_ROWFIND).map((n) => line(g, `rowfind-q-${n}`, V.rowFindPrompt(n))),
+    line(g, 'rowfind-hint', V.ROWFIND_HINT),
   ];
 }
 

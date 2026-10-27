@@ -2,11 +2,11 @@
 import { h, art } from './dom.js';
 import { holdable, consumeHeld, PARENT_HOLD_MS } from './hold.js';
 
-const PARENT_TIP = '2초간 꾹 눌러주세요';
+const PARENT_TIP = '1초간 꾹 눌러주세요';
 const TIP_MS = 2000; // 안내 말풍선이 보이는 시간
 
 export function createTopbar(el, app) {
-  // 부모 메뉴: 2초 동안 누르고 있어야 열린다. 아이가 톡 누르면 설정 버튼 바로 옆에 안내 말풍선만.
+  // 부모 메뉴: 1초 동안 누르고 있어야 열린다. 아이가 톡 누르면 설정 버튼 바로 옆에 안내 말풍선만.
   const tip = h('span', { class: 'ptip', role: 'status', hidden: true }, PARENT_TIP);
   let tipTimer = null;
   const showTip = () => {
@@ -18,7 +18,7 @@ export function createTopbar(el, app) {
     'button',
     {
       class: 'pbtn',
-      'aria-label': '부모님 메뉴, 2초 동안 누르고 있기',
+      'aria-label': '부모님 메뉴, 1초 동안 누르고 있기',
       onclick: () => {
         if (!consumeHeld(lock)) showTip();
       },
@@ -27,12 +27,12 @@ export function createTopbar(el, app) {
   );
   holdable(lock, PARENT_HOLD_MS, () => app.openParentMenu());
 
-  // 게임 중에만 보이는 돌아가기 버튼
+  // 돌아가기 버튼: 화면 오른쪽 아래. 누르면 효과음만 내고 돌아간다(말소리 없음)
   let onBack = null;
   const back = h(
     'button',
     { class: 'backbtn press', hidden: true, onclick: () => { app.sfx.pop(); onBack?.(); } },
-    art('icon', 'home', { class: 'ico' }),
+    art('icon', 'back', { class: 'ico' }),
   );
 
   // 문제 진행 점 (게임 중에만)

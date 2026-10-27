@@ -1,5 +1,5 @@
 // 농장 마을 게임 3종 (복습. key는 villages/farm.js의 games[].key와 같다)
-import { feedGame } from './feed.js';
+import { rowFindGame } from './rowfind.js';
 import { makeAddSubGame } from '../shared/addsub.js';
 import { makeCompareGame } from '../shared/compare.js';
 import { basketAdd, basketSub, FARM_MORE, FARM_FEWER } from '../../audio/villageScript.js';
@@ -34,4 +34,4 @@ const farmCompareGame = makeCompareGame({
   prompts: { more: FARM_MORE, fewer: FARM_FEWER },
 });
 
-export const FARM_GAMES = Object.freeze({ basket: basketGame, farmcompare: farmCompareGame, feed: feedGame });
+export const FARM_GAMES = Object.freeze({ basket: basketGame, farmcompare: farmCompareGame, rowfind: rowFindGame });

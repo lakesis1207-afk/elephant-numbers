@@ -1,7 +1,8 @@
 // Azure 음성(TTS)으로 대사 녹음 만들기 (npm run voice:azure [-- --limit 3])
 // 문장마다 public/audio/voice/<파일 이름>.mp3 로 저장하고, 끝나면 녹음 목록(manifest)을 다시 만든다.
 // 키는 파일에 적지 않고 실행할 때 환경 변수로 넣는다: AZURE_SPEECH_KEY, AZURE_SPEECH_REGION (예: koreacentral)
-// 이미 Azure로 만든 문장은 건너뛴다(기록: 프로젝트 밖 ../녹음 원본/azure-done.json). 다시 만들려면 --force.
+// 이미 Azure로 만든 문장은 건너뛴다(기록: 프로젝트 밖 ../녹음 원본/azure-done.json, 파일 이름 → 만든 문장).
+// 문장 글자가 바뀌었으면 다시 만든다. 전부 다시 만들려면 --force.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -37,9 +38,10 @@ const ssml = (text) =>
 
 function readDone() {
   try {
-    return new Set(JSON.parse(readFileSync(DONE_FILE, 'utf8')));
+    const saved = JSON.parse(readFileSync(DONE_FILE, 'utf8'));
+    return new Map(Object.entries(Array.isArray(saved) ? {} : saved));
   } catch {
-    return new Set();
+    return new Map();
   }
 }
 
@@ -64,8 +66,8 @@ async function synth(text) {
   throw new Error('여러 번 다시 보내도 실패했어요.');
 }
 
-const done = force ? new Set() : readDone();
-const todo = VOICE_LINES.filter((l) => !done.has(l.id)).slice(0, limit);
+const done = force ? new Map() : readDone();
+const todo = VOICE_LINES.filter((l) => done.get(l.id) !== l.text).slice(0, limit);
 console.log(`[azure] ${VOICE} · 만들 문장 ${todo.length}개 (이미 만든 것 ${done.size}개, 전체 ${VOICE_LINES.length}개)`);
 mkdirSync(OUT_DIR, { recursive: true });
 mkdirSync(dirname(DONE_FILE), { recursive: true });
@@ -75,8 +77,8 @@ try {
   for (const [i, line] of todo.entries()) {
     if (i > 0) await sleep(GAP_MS);
     writeFileSync(`${OUT_DIR}${line.id}.mp3`, await synth(line.text));
-    done.add(line.id);
-    writeFileSync(DONE_FILE, JSON.stringify([...done]));
+    done.set(line.id, line.text);
+    writeFileSync(DONE_FILE, JSON.stringify(Object.fromEntries(done)));
     made += 1;
     if (made % 20 === 0 || made === todo.length) console.log(`  ${made}/${todo.length}`);
   }

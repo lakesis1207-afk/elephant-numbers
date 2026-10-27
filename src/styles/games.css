@@ -16,13 +16,13 @@
 .qdots i.on {
   background: var(--sun);
 }
-/* 홈: 설정 버튼과 같은 크기로, 설정 바로 아래 (왼쪽 칸에 세로로 둔다) */
+/* 뒤로가기: 화면 오른쪽 아래 (막대는 위에 있지만 cqh는 무대 높이라 무대 바닥 기준으로 놓을 수 있다) */
 .bar .backbtn {
   position: absolute;
-  left: 3cqh;
-  top: 21cqh;
-  width: 18cqh;
-  height: 18cqh;
+  right: 1.5cqh;
+  top: calc(100cqh - 14.5cqh);
+  width: 13cqh;
+  height: 13cqh;
 }
 .backbtn[hidden] {
   display: none;
@@ -57,29 +57,34 @@
     transform: translateY(-3cqh) scale(1.05);
   }
 }
+/* 다시 듣기: 글자 말풍선 대신 스피커 버튼 하나 (설정 버튼 아래). 문장은 화면 읽기용으로만 남긴다 */
 .bubble {
   position: absolute;
-  left: 3cqh;
-  top: 41cqh; /* 왼쪽 위 설정·홈 버튼 아래 */
-  width: 25cqh;
-  box-sizing: border-box;
+  left: 4.5cqh;
+  top: 22cqh;
+  width: 15cqh;
+  height: 15cqh;
+  border-radius: 50%;
   background: var(--card);
-  border: 0.45cqh solid var(--ink);
-  border-radius: 3cqh;
-  padding: 1.4cqh 1.8cqh;
-  font-size: 2.9cqh;
-  line-height: 1.35;
-  color: var(--soft);
-  display: flex;
-  gap: 1.2cqh;
-  align-items: flex-start;
-  text-align: left;
-  word-break: keep-all; /* 한국어 단어 중간에서 줄이 바뀌지 않게 */
+  border: 0.5cqh solid var(--ink);
+  box-shadow: 0 0.8cqh 0 rgba(58, 42, 28, 0.25);
+  display: grid;
+  place-items: center;
+  padding: 0;
+  box-sizing: border-box;
 }
+.bubble > span {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .bubble .spk {
-  flex: none;
-  width: 6cqh;
-  height: 6cqh;
+  width: 10cqh;
+  height: 10cqh;
 }
 
 /* 숫자 보기 (숫자 + 텐프레임) */
@@ -165,6 +170,11 @@
   width: 23cqh;
   height: 23cqh;
   transition: transform 0.15s;
+}
+/* 과일이 9개 이상이면 세 줄이 되므로 조금 작게 (숫자 버튼이 화면 안에 남게) */
+.tray:has(> .fruit:nth-child(9)) .fruit {
+  width: 19cqh;
+  height: 19cqh;
 }
 .fruit img {
   width: 100%;

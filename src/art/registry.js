@@ -9,16 +9,13 @@ const DRAWN_CHARACTERS = [
   'squirrel', 'crab', 'chick', 'pig',
   'panda', 'fox', 'owl', 'hedgehog',
   'polarbear', 'walrus', 'whale', 'turtle', 'dolphin', 'starfish', 'seaotter',
+  'octopus', 'brachio', 'stego', 'ptera', 'dog', 'cat',
 ];
 // 아직 그림이 없어 자리 표시용 그림(svg)을 쓰는 캐릭터. 그림을 그리면 webp로 넣고 위 목록으로 옮긴다.
 // (npm run art:villages 로 다시 만든다)
-export const PLACEHOLDER_CHARACTERS = Object.freeze([
-  'octopus',
-  'brachio', 'stego', 'ptera',
-  'dog', 'cat',
-]);
+export const PLACEHOLDER_CHARACTERS = Object.freeze([]); // 지금은 모두 그림이 있다
 const ICONS = [
-  'play', 'check', 'home', 'close', 'map', 'star', 'lock', 'settings', 'speaker', 'cake',
+  'play', 'check', 'home', 'close', 'map', 'star', 'lock', 'settings', 'back', 'speaker', 'cake',
   'game-fruit', 'game-pond', 'game-spots',
 ];
 const BACKGROUNDS = [

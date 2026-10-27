@@ -338,3 +338,19 @@ img {
     transition: none !important;
   }
 }
+
+/* 마을 이름(지도 카드)과 게임 이름(게임 카드): 동글동글한 굵은 글씨(Dongle). 앱 안에 들어 있어 오프라인에서도 보인다.
+   Dongle은 같은 크기에서 작아 보여서 다른 글씨보다 크게 쓴다. */
+.vcard > span:last-child,
+.gcard > span:last-child {
+  font-family: 'Dongle', var(--font);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--ink);
+}
+.vcard > span:last-child {
+  font-size: 6.4cqh;
+}
+.gcard > span:last-child {
+  font-size: 5.6cqh;
+}

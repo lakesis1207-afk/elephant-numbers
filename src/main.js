@@ -1,5 +1,6 @@
 // 앱 시작점: 진행 기록을 읽고, 화면 전환·소리·위쪽 막대·놀이 시간을 묶어 첫 화면을 띄운다.
 import '@fontsource/jua';
+import '@fontsource/dongle/700.css'; // 마을·게임 이름용 귀여운 굵은 글씨 (한글 전체가 나뉘어 들어 있다)
 import './styles/base.css';
 import './styles/screens.css';
 import './styles/games.css';

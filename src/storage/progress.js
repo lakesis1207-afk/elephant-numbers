@@ -12,8 +12,8 @@ export const DEFAULT_PROGRESS = freezeProgress({
   special: false,      // 특별 친구(부엉이)를 받았는지 (스티커북 칸)
   specialSeen: false,  // 특별 친구 등장 장면을 아이가 실제로 봤는지
   forestOpen: false,   // 숲속 마을이 열렸는지 (사바나를 다 끝냄)
-  seaOpen: false,      // 바다·극지 마을 (숲속을 다 끝냄)
-  dinoOpen: false,     // 공룡 나라 (바다·극지를 다 끝냄)
+  seaOpen: false,      // 바닷가 마을 (숲속을 다 끝냄)
+  dinoOpen: false,     // 공룡 나라 (바닷가를 다 끝냄)
   farmOpen: false,     // 농장 마을 (공룡 나라를 다 끝냄)
   allOpen: false,      // 부모님이 모든 마을을 열었는지
   music: true,         // 배경 음악

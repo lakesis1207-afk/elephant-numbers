@@ -4,7 +4,7 @@ import { withTopic, withSubject, withObject } from '../../src/app/korean.js';
 describe('은/는 붙이기', () => {
   test('받침이 있으면 "은"', () => {
     expect(withTopic('숲속 마을')).toBe('숲속 마을은');
-    expect(withTopic('바다·극지 마을')).toBe('바다·극지 마을은');
+    expect(withTopic('바닷가 마을')).toBe('바닷가 마을은');
   });
 
   test('받침이 없으면 "는"', () => {

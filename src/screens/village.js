@@ -1,7 +1,6 @@
 // 마을 화면: 이야기 버튼 + 게임 카드 3개. 카드를 누르면 게임이 시작되고, 끝낸 게임에는 별이 붙는다.
 import { h, art } from '../widgets/dom.js';
 import { findVillage } from '../villages/index.js';
-import { MAP_WORD } from '../audio/script.js';
 
 function gameCard(game, village, app) {
   const play = () => {
@@ -36,7 +35,6 @@ export const villageScreen = {
     app.bar?.setBack(() => {
       app.sfx.pop();
       app.go('map');
-      app.say(MAP_WORD);
     }, '지도로 가기');
   },
 };

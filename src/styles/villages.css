@@ -1,4 +1,4 @@
-/* 숲속·바다·극지·공룡·농장 마을 게임 화면. 게임판은 가로 약 126cqh × 세로 약 83cqh 안에 들어간다. */
+/* 숲속·바닷가·공룡·농장 마을 게임 화면. 게임판은 가로 약 126cqh × 세로 약 83cqh 안에 들어간다. */
 
 /* 공통: 하나씩 세는 물건의 번호표, 반짝 */
 .num {
@@ -306,6 +306,8 @@
   flex-direction: column;
   justify-content: center;
   gap: 2cqh;
+  padding-right: 11cqh; /* 오른쪽 아래 뒤로가기 버튼 자리 */
+  box-sizing: border-box;
 }
 .crow {
   display: flex;
@@ -439,7 +441,7 @@
   font-size: 4.8cqh;
 }
 .board.rows5 .bcell {
-  height: 12cqh;
+  height: 11cqh; /* 오른쪽 아래 뒤로가기 버튼과 겹치지 않게 */
   font-size: 6.4cqh;
 }
 .bcell:nth-child(10n + 1) {
@@ -671,4 +673,58 @@
   .bpop {
     display: none;
   }
+}
+
+/* 숫자 찾기 (농장): 큰 숫자 + 그 숫자가 있는 줄 고르기 */
+.rowfindq {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5cqh;
+}
+.rftarget {
+  min-width: 34cqh;
+  padding: 2cqh 5cqh;
+  box-sizing: border-box;
+  border-radius: 4cqh;
+  background: var(--card);
+  border: 0.6cqh solid var(--ink);
+  box-shadow: 0 1cqh 0 rgba(58, 42, 28, 0.25);
+  font-size: 18cqh;
+  line-height: 1;
+  text-align: center;
+  color: var(--coral);
+  -webkit-text-stroke: 0.4cqh var(--ink);
+}
+.rowbtns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.4cqh;
+  max-width: 120cqh;
+}
+.rowbtn {
+  width: 34cqh;
+  height: 15cqh;
+  border-radius: 3cqh;
+  background: var(--card);
+  border: 0.5cqh solid var(--ink);
+  box-shadow: 0 0.8cqh 0 rgba(58, 42, 28, 0.25);
+  font-size: 7.5cqh;
+  color: var(--ink);
+}
+.rowbtns.rows5 .rowbtn {
+  width: 22cqh;
+  font-size: 5.2cqh;
+}
+.rowbtn.hl {
+  background: #fff1c2;
+  border-color: var(--sun);
+  transform: scale(1.06);
+}
+.rowbtn.right {
+  background: #c9f2c4;
+  border-color: var(--leaf);
 }
