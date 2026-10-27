@@ -1,10 +1,10 @@
 // 보상 화면: 받은 동물 스티커 (+ 마을 열림 표시). ▶를 누르면 마을로.
 // 동물을 다 모았으면 ▶ 한 번 더 전에 특별 친구(부엉이)가 나온다.
-import { h, art, roundButton } from '../widgets/dom.js';
+import { h, art, roundButton } from '@공통/widgets/dom.js';
 import { cheer } from '../widgets/cheer.js';
 import { artUrl } from '../art/registry.js';
 import { findVillage } from '../villages/index.js';
-import { withSubject } from '../app/korean.js';
+import { withSubject } from '@공통/app/korean.js';
 import { stickerLine, specialLine } from '../audio/script.js';
 import { stopVoice } from '../audio/voice.js';
 

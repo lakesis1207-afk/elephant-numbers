@@ -1,8 +1,8 @@
 // 숲속 마을 게임 3종 (key는 villages/forest.js의 games[].key와 같다)
 import { balloonGame } from './balloon.js';
 import { acornsGame } from './acorns.js';
-import { makeCompareGame } from '../shared/compare.js';
-import { TREES_MORE, TREES_FEWER } from '../../audio/villageScript.js';
+import { makeCompareGame } from '@공통/games/shared/compare.js';
+import { TREES_MORE, TREES_FEWER, PAIR_HINT, PAIR_HINT_MORE, PAIR_HINT_FEWER } from '../../audio/villageScript.js';
 
 // 어느 쪽이 많아? (doll-math "어느 쪽이 많아?"): 두 나무의 도토리 비교
 const treesGame = makeCompareGame({
@@ -18,6 +18,7 @@ const treesGame = makeCompareGame({
     { label: '아래쪽 나무', icon: { kind: 'prop', name: 'tree' }, item: { kind: 'prop', name: 'acorn' } },
   ],
   prompts: { more: TREES_MORE, fewer: TREES_FEWER },
+  hints: { pair: PAIR_HINT, more: PAIR_HINT_MORE, fewer: PAIR_HINT_FEWER },
 });
 
 export const FOREST_GAMES = Object.freeze({ balloon: balloonGame, trees: treesGame, acorns: acornsGame });

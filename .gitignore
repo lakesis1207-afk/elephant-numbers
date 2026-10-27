@@ -10,3 +10,6 @@ Thumbs.db
 public/**/*.zip
 # 이 컴퓨터에서만 쓰는 Claude 설정
 .claude/settings.local.json
+
+# 코드 관계 그래프 (graphify) 결과
+graphify-out/

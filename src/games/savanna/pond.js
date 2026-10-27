@@ -1,7 +1,7 @@
 // 물웅덩이 채우기 (하마): 목표 수만큼 하마를 끌거나 톡 눌러 물웅덩이에 넣고 ✓를 누른다.
-import { h, art } from '../../widgets/dom.js';
-import { NATIVE, pickNumber, wait } from '../logic.js';
-import { tenFrameEl, replayClass } from '../widgets.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { NATIVE, pickNumber, wait } from '@공통/games/logic.js';
+import { tenFrameEl, replayClass } from '@공통/games/widgets.js';
 import { pondPrompt, pondHintStart, POND_EMPTY, pondTooFew, pondTooMany } from '../../audio/script.js';
 
 const MAX_HIPPOS = 8;

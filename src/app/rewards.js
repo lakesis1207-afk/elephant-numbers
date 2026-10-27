@@ -1,6 +1,6 @@
 // 게임을 끝냈을 때 보상 계산 (화면과 상관없음): 별 표시, 스티커, 다음 마을 열기, 특별 친구
 import { freezeProgress } from '../storage/progress.js';
-import { pickOne } from '../games/logic.js';
+import { pickOne } from '@공통/games/logic.js';
 import { nextVillage } from '../villages/index.js';
 
 /**

@@ -1,5 +1,5 @@
 // 마을 지도: 마을 5개. 열린 마을은 들어가고, 잠긴 마을은 "뽀잉" + 안내
-import { h, art } from '../widgets/dom.js';
+import { h, art } from '@공통/widgets/dom.js';
 import { VILLAGES, isVillageOpen, previousVillage } from '../villages/index.js';
 import { lockedVillage, soonVillage } from '../audio/script.js';
 

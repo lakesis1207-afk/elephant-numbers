@@ -1,7 +1,7 @@
 // 과일 세기 (코끼리): 파티 과일을 하나씩 눌러 고유어로 세고, 숫자 보기에서 고른다.
-import { h, art } from '../../widgets/dom.js';
-import { NATIVE, pickNumber, pickOne, wait } from '../logic.js';
-import { numberOptions, pickHandler } from '../widgets.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { NATIVE, pickNumber, pickOne, wait } from '@공통/games/logic.js';
+import { numberOptions, pickHandler } from '@공통/games/widgets.js';
 import { fruitPrompt, FRUIT_HINT_START, fruitHintEnd } from '../../audio/script.js';
 
 const MAX = 10;

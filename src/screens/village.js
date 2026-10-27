@@ -1,5 +1,5 @@
 // 마을 화면: 이야기 버튼 + 게임 카드 3개. 카드를 누르면 게임이 시작되고, 끝낸 게임에는 별이 붙는다.
-import { h, art } from '../widgets/dom.js';
+import { h, art } from '@공통/widgets/dom.js';
 import { findVillage } from '../villages/index.js';
 
 function gameCard(game, village, app) {

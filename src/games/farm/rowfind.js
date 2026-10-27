@@ -1,8 +1,8 @@
 // 숫자 찾기 (농장, 1~50): 큰 숫자 하나를 보여 주고 "사십을 찾아봐! 어느 줄에 있을까?"
 // → "1 ~ 10", "11 ~ 20" … 줄 버튼 중 그 숫자가 들어 있는 줄을 고른다. 힌트: 정답 줄이 반짝인다.
-import { h } from '../../widgets/dom.js';
-import { pickNumber } from '../logic.js';
-import { pickHandler } from '../widgets.js';
+import { h } from '@공통/widgets/dom.js';
+import { pickNumber } from '@공통/games/logic.js';
+import { pickHandler } from '@공통/games/widgets.js';
 import { rowFindPrompt, ROWFIND_HINT } from '../../audio/villageScript.js';
 
 const ROW = 10;

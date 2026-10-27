@@ -1,8 +1,9 @@
 // 농장 마을 게임 3종 (복습. key는 villages/farm.js의 games[].key와 같다)
 import { rowFindGame } from './rowfind.js';
-import { makeAddSubGame } from '../shared/addsub.js';
-import { makeCompareGame } from '../shared/compare.js';
-import { basketAdd, basketSub, FARM_MORE, FARM_FEWER } from '../../audio/villageScript.js';
+import { makeAddSubGame } from '@공통/games/shared/addsub.js';
+import { makeCompareGame } from '@공통/games/shared/compare.js';
+import { basketAdd, basketSub, FARM_MORE, FARM_FEWER, PAIR_HINT, PAIR_HINT_MORE, PAIR_HINT_FEWER } from '../../audio/villageScript.js';
+import { FRUIT_HINT_START, fruitHintEnd } from '../../audio/script.js';
 
 // 달걀 바구니 (doll-math "바구니 더하기·빼기")
 const basketGame = makeAddSubGame({
@@ -16,6 +17,7 @@ const basketGame = makeAddSubGame({
   item: { kind: 'prop', name: 'egg' },
   container: { kind: 'prop', name: 'basket' },
   prompts: { add: basketAdd, sub: basketSub },
+  hints: { start: FRUIT_HINT_START, end: fruitHintEnd },
 });
 
 // 누가 더 많아? (doll-math "어느 쪽이 많아?" 복습): 병아리 줄과 돼지 줄 비교
@@ -32,6 +34,7 @@ const farmCompareGame = makeCompareGame({
     { label: '돼지', item: { kind: 'character', name: 'pig' } },
   ],
   prompts: { more: FARM_MORE, fewer: FARM_FEWER },
+  hints: { pair: PAIR_HINT, more: PAIR_HINT_MORE, fewer: PAIR_HINT_FEWER },
 });
 
 export const FARM_GAMES = Object.freeze({ basket: basketGame, farmcompare: farmCompareGame, rowfind: rowFindGame });

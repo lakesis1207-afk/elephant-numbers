@@ -1,7 +1,7 @@
 // 숲속·바닷가·공룡·농장 마을 게임이 하는 말. (사바나와 공통 문장은 script.js)
 // 문장을 바꾸면 음성 목록도 같이 바뀐다 (npm run voice:list 로 목록 다시 만들기).
-import { nativeAdj, sinoWord } from '../games/numbers.js';
-import { withObject } from '../app/korean.js';
+import { nativeAdj, sinoWord } from '@공통/games/numbers.js';
+import { withObject } from '@공통/app/korean.js';
 
 /** "모두 열한 개야! 숫자를 골라 봐." (10 이하는 과일 세기 힌트와 같은 문장) */
 export const countHintEnd = (n) => `모두 ${nativeAdj(n)} 개야! 숫자를 골라 봐.`;

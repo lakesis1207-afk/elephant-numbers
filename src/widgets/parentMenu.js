@@ -1,5 +1,5 @@
 // 부모님 메뉴 (자물쇠 1초 누르기로 열림). 부모님용이라 글자로 된 메뉴.
-import { h } from './dom.js';
+import { h } from '@공통/widgets/dom.js';
 import { remainingMs, MINUTE, moreTimeChange, testLimitChange, resetChange } from '../app/playtime.js';
 import { SAVANNA } from '../villages/savanna.js';
 

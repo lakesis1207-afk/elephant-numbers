@@ -1,5 +1,5 @@
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest';
-import { createGameRun, NEXT_DELAY_MS, IDLE_REMIND_MS, RETRY_LOCK_MS, RETRY_TEXT, IDLE_TEXT } from '../../src/games/engine.js';
+import { createGameRun, NEXT_DELAY_MS, IDLE_REMIND_MS, RETRY_LOCK_MS, RETRY_TEXT, IDLE_TEXT } from '@공통/games/engine.js';
 
 const LEVELS = [
   [1, 3],

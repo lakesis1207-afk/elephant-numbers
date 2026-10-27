@@ -1,5 +1,5 @@
 // 위쪽 막대: 왼쪽 자물쇠(부모 메뉴)·돌아가기, 가운데 문제 점, 오른쪽 스티커북 버튼
-import { h, art } from './dom.js';
+import { h, art } from '@공통/widgets/dom.js';
 import { holdable, consumeHeld, PARENT_HOLD_MS } from './hold.js';
 
 const PARENT_TIP = '1초간 꾹 눌러주세요';

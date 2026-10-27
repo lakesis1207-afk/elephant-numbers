@@ -1,5 +1,5 @@
 // 아직 준비 중인 마을: 대표 동물 + 지도로 돌아가기
-import { art, roundButton } from '../widgets/dom.js';
+import { art, roundButton } from '@공통/widgets/dom.js';
 import { findVillage } from '../villages/index.js';
 import { MAP_WORD } from '../audio/script.js';
 

@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { startDifficulty, nextDifficulty, rangeOf } from '../../src/games/difficulty.js';
+import { startDifficulty, nextDifficulty, rangeOf } from '@공통/games/difficulty.js';
 
 const LEVELS = [
   [1, 3],

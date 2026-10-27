@@ -2,8 +2,8 @@
 // 녹음 파일은 public/audio/voice/<id>.mp3 로 넣는다. 파일이 없으면 브라우저 기본 음성으로 읽는다.
 // 사람이 보는 목록: docs/음성 목록.md (npm run voice:list 로 다시 만든다)
 import * as S from './script.js';
-import { NATIVE, PRAISE } from '../games/logic.js';
-import { RETRY_TEXT, IDLE_TEXT } from '../games/engine.js';
+import { NATIVE, PRAISE } from '@공통/games/logic.js';
+import { RETRY_TEXT, IDLE_TEXT } from '@공통/games/engine.js';
 import { MISSIONS } from '../app/playtime.js';
 import { SAVANNA } from '../villages/savanna.js';
 import { VILLAGES } from '../villages/index.js';

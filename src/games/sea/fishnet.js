@@ -1,11 +1,11 @@
 // 물고기 묶기 (바닷가, 11~39 묶음과 낱개): 그물 하나에 물고기 열 마리. 그물과 낱개 물고기로 모두 몇 마리인지 센다.
 // 그물을 누르면 "열, 스물, 서른", 낱개를 누르면 그 뒤를 이어 "스물하나…". 힌트는 그물부터 같이 센다.
-import { h, art } from '../../widgets/dom.js';
-import { pickNumber, wait } from '../logic.js';
-import { numberOptions, pickHandler } from '../widgets.js';
-import { nativeCount } from '../numbers.js';
-import { splitTens } from '../questions.js';
-import { tapToCount, countTogether, HINT_START_MS } from '../shared/counting.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { pickNumber, wait } from '@공통/games/logic.js';
+import { numberOptions, pickHandler } from '@공통/games/widgets.js';
+import { nativeCount } from '@공통/games/numbers.js';
+import { splitTens } from '@공통/games/questions.js';
+import { tapToCount, countTogether, HINT_START_MS } from '@공통/games/shared/counting.js';
 import { FISH_PROMPT, FISH_HINT, fishHintEnd } from '../../audio/villageScript.js';
 
 const TEN = 10;

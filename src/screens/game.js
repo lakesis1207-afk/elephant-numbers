@@ -1,8 +1,8 @@
 // 게임 화면: 왼쪽 아래 코끼리 + 말풍선, 오른쪽에 게임판. 5문제를 끝내면 보상 화면(스티커)으로 간다.
-import { h, art } from '../widgets/dom.js';
+import { h, art } from '@공통/widgets/dom.js';
 import { cheer } from '../widgets/cheer.js';
 import { stopVoice } from '../audio/voice.js';
-import { createGameRun } from '../games/engine.js';
+import { createGameRun } from '@공통/games/engine.js';
 import { findGame } from '../games/index.js';
 import { finishGame } from '../app/rewards.js';
 import { findVillage } from '../villages/index.js';

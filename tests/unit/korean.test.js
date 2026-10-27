@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { withTopic, withSubject, withObject } from '../../src/app/korean.js';
+import { withTopic, withSubject, withObject } from '@공통/app/korean.js';
 
 describe('은/는 붙이기', () => {
   test('받침이 있으면 "은"', () => {

@@ -1,8 +1,8 @@
 // 숫자판 찾기 (공룡 나라, 1~50): "삼십오를 찾아서 눌러 줘!" → 숫자판에서 그 수를 누른다.
 // 숫자판은 단계에 따라 20 → 30 → 50칸으로 넓어진다. 힌트: 그 수가 있는 줄이 반짝인다.
-import { h } from '../../widgets/dom.js';
-import { pickNumber } from '../logic.js';
-import { pickHandler } from '../widgets.js';
+import { h } from '@공통/widgets/dom.js';
+import { pickNumber } from '@공통/games/logic.js';
+import { pickHandler } from '@공통/games/widgets.js';
 import { boardPrompt, BOARD_HINT } from '../../audio/villageScript.js';
 
 const ROW = 10;

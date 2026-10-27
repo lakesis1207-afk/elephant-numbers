@@ -1,9 +1,9 @@
 // 풍선 터뜨리기 (숲속, 1~20 숫자 알아보기): "십사 풍선을 터뜨려 줘!" → 숫자 풍선 5개 중 골라 누른다.
 // 힌트: 정답 풍선이 반짝이고 "이게 십사 풍선이야!"
-import { h, art } from '../../widgets/dom.js';
-import { pickNumber, wait } from '../logic.js';
-import { pickHandler } from '../widgets.js';
-import { pickDistinct } from '../questions.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { pickNumber, wait } from '@공통/games/logic.js';
+import { pickHandler } from '@공통/games/widgets.js';
+import { pickDistinct } from '@공통/games/questions.js';
 import { balloonPrompt, BALLOON_HINT, balloonHintEnd } from '../../audio/villageScript.js';
 
 const BALLOONS = 5;

@@ -1,11 +1,11 @@
 // 발자국 빈칸 (공룡 나라, 이어지는 수): 공룡 발자국 5개에 1씩 커지는 수가 있고, 하나가 비어 있다.
 // 쉬운 단계는 "다음 수"(마지막 칸), 어려운 단계는 가운데 칸도 빈다. 힌트: 발자국을 하나씩 읽어 준다.
-import { h, art } from '../../widgets/dom.js';
-import { wait } from '../logic.js';
-import { numberOptions, pickHandler } from '../widgets.js';
-import { sinoWord } from '../numbers.js';
-import { stepsQuestion } from '../questions.js';
-import { HINT_START_MS, HINT_STEP_MS } from '../shared/counting.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { wait } from '@공통/games/logic.js';
+import { numberOptions, pickHandler } from '@공통/games/widgets.js';
+import { sinoWord } from '@공통/games/numbers.js';
+import { stepsQuestion } from '@공통/games/questions.js';
+import { HINT_START_MS, HINT_STEP_MS } from '@공통/games/shared/counting.js';
 import { STEPS_PROMPT, STEPS_PROMPT_MID, STEPS_HINT_END } from '../../audio/villageScript.js';
 
 export const stepsGame = {

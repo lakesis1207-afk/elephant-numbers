@@ -15,7 +15,8 @@ import { sfx } from './audio/sfx.js';
 import { audioContext } from './audio/context.js';
 import { say } from './audio/voice.js';
 import { WARN_TEXT } from './audio/script.js';
-import { art } from './widgets/dom.js';
+import { art, setArtLookup } from '@공통/widgets/dom.js';
+import { artUrl } from './art/registry.js';
 import { createToast } from './widgets/toast.js';
 import { createTopbar } from './widgets/topbar.js';
 import { createParentMenu } from './widgets/parentMenu.js';
@@ -28,6 +29,8 @@ import { gameScreen } from './screens/game.js';
 import { rewardScreen } from './screens/reward.js';
 import { bookScreen } from './screens/book.js';
 import { lockScreen } from './screens/lock.js';
+
+setArtLookup(artUrl); // 공통 코드가 이 앱의 그림 목록을 쓰도록 등록한다
 
 const $ = (id) => document.getElementById(id);
 

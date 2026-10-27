@@ -1,5 +1,5 @@
 // 시작 화면: 코끼리 인사 + ▶
-import { h, art, roundButton } from '../widgets/dom.js';
+import { h, art, roundButton } from '@공통/widgets/dom.js';
 import { GREETING } from '../audio/script.js';
 
 /**

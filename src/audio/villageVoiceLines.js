@@ -3,8 +3,8 @@
 // 그래야 예전 녹음 zip을 다시 나눠도 줄 수가 맞는다.
 import * as S from './script.js';
 import * as V from './villageScript.js';
-import { NATIVE } from '../games/logic.js';
-import { nativeCount, sinoWord } from '../games/numbers.js';
+import { NATIVE } from '@공통/games/logic.js';
+import { nativeCount, sinoWord } from '@공통/games/numbers.js';
 import { VILLAGES, previousVillage, nextVillage } from '../villages/index.js';
 
 const range = (a, b, step = 1) => Array.from({ length: Math.floor((b - a) / step) + 1 }, (_, i) => a + i * step);

@@ -1,7 +1,7 @@
 import { describe, test, expect } from 'vitest';
 import {
   pickDistinct, comparePair, patternQuestion, PATTERN_TYPES, stepsQuestion, addSubQuestion, splitTens,
-} from '../../src/games/questions.js';
+} from '@공통/games/questions.js';
 
 const many = (fn, times = 200) => Array.from({ length: times }, fn);
 

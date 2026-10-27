@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { NATIVE, ADJ, PRAISE, DICE, nearChoices, pickNumber, tenFrame, shuffle } from '../../src/games/logic.js';
+import { NATIVE, ADJ, PRAISE, DICE, nearChoices, pickNumber, tenFrame, shuffle } from '@공통/games/logic.js';
 
 // 정해진 순서로 값을 돌려주는 가짜 Math.random
 const seq = (...values) => {

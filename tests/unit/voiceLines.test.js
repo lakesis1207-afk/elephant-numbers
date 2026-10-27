@@ -1,8 +1,8 @@
 import { describe, test, expect } from 'vitest';
 import { VOICE_LINES, voiceIdOf } from '../../src/audio/voiceLines.js';
 import * as script from '../../src/audio/script.js';
-import { NATIVE, PRAISE } from '../../src/games/logic.js';
-import { RETRY_TEXT, IDLE_TEXT } from '../../src/games/engine.js';
+import { NATIVE, PRAISE } from '@공통/games/logic.js';
+import { RETRY_TEXT, IDLE_TEXT } from '@공통/games/engine.js';
 import { MISSIONS } from '../../src/app/playtime.js';
 import { SAVANNA } from '../../src/villages/savanna.js';
 

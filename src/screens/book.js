@@ -1,7 +1,7 @@
 // 스티커북: 마을마다 한 쪽. 왼쪽 마을 버튼으로 쪽을 넘긴다 (처음엔 지금 있던 마을, 지도에서 열면 사바나).
 // 모은 친구는 색깔, 아직 없는 친구는 흐린 그림자. 특별 친구가 있는 마을은 마지막 칸이 특별 친구.
 // X를 누르면 스티커북을 열기 전 화면으로 돌아간다.
-import { h, art, roundButton } from '../widgets/dom.js';
+import { h, art, roundButton } from '@공통/widgets/dom.js';
 import { VILLAGES, findVillage } from '../villages/index.js';
 import { bookCount, NOT_MET } from '../audio/script.js';
 import { stopVoice } from '../audio/voice.js';

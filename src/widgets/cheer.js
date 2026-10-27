@@ -1,5 +1,5 @@
 // 정답 효과: 별 조각이 1초 동안 퍼졌다 사라진다 (지시서: 정답 효과는 1초 안팎으로 짧게)
-import { h } from './dom.js';
+import { h } from '@공통/widgets/dom.js';
 
 const PIECES = 14;
 const LIFE_MS = 1000;

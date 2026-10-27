@@ -1,5 +1,5 @@
 // 잠금 화면: 놀이 시간이 다 되면. 잠든 코끼리 + 화면 밖 미션. 부모님이 1초 누르면 다시 논다.
-import { h, art } from '../widgets/dom.js';
+import { h, art } from '@공통/widgets/dom.js';
 import { holdable, PARENT_HOLD_MS } from '../widgets/hold.js';
 import { pickMission, unlockChange } from '../app/playtime.js';
 import { stopVoice } from '../audio/voice.js';

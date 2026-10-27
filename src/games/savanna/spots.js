@@ -1,8 +1,8 @@
 // 반짝 무늬 보기 (기린): "잘 봐!" → 무늬를 2초 보여 주고 덤불로 가린다 → "몇 개였을까?"
 // 덤불을 누르면 1.5초 다시 보여 준다. 무늬는 주사위 배치라 세지 않고 한눈에 알아보게 한다.
-import { h, art } from '../../widgets/dom.js';
-import { NATIVE, DICE, pickNumber, wait } from '../logic.js';
-import { numberOptions, pickHandler } from '../widgets.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { NATIVE, DICE, pickNumber, wait } from '@공통/games/logic.js';
+import { numberOptions, pickHandler } from '@공통/games/widgets.js';
 import { SPOTS_LOOK, SPOTS_PROMPT, SPOTS_HINT_START, spotsHintEnd } from '../../audio/script.js';
 
 const MAX = 6;

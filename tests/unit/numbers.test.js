@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import { nativeCount, nativeAdj, sinoWord, tensChoices } from '../../src/games/numbers.js';
+import { nativeCount, nativeAdj, sinoWord, tensChoices } from '@공통/games/numbers.js';
 
 describe('고유어로 세기 (하나~서른아홉)', () => {
   test('세는 말', () => {

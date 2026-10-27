@@ -1,9 +1,9 @@
 // 무늬 잇기 (바닷가, 반복 규칙): 펭귄·물고기·조개·불가사리가 규칙대로 줄 서 있고, 물음표 자리에 올 친구를 고른다.
 // 규칙은 AB → AAB·ABB → ABC 순서로 어려워진다. 힌트: 되풀이되는 묶음을 차례로 반짝인다.
-import { h, art } from '../../widgets/dom.js';
-import { pickNumber, wait } from '../logic.js';
-import { pickHandler } from '../widgets.js';
-import { patternQuestion, PATTERN_TYPES } from '../questions.js';
+import { h, art } from '@공통/widgets/dom.js';
+import { pickNumber, wait } from '@공통/games/logic.js';
+import { pickHandler } from '@공통/games/widgets.js';
+import { patternQuestion, PATTERN_TYPES } from '@공통/games/questions.js';
 import { PATTERN_PROMPT, PATTERN_HINT, PATTERN_HINT_END } from '../../audio/villageScript.js';
 
 const ITEMS = {

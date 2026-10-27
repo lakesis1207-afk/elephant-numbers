@@ -1,8 +1,8 @@
 // 앱이 하는 말(대사) 모음. 화면은 여기 있는 문장만 쓰고, 음성 목록(voiceLines.js)도 여기서 만든다.
 // 문장을 바꾸면 음성 목록과 녹음 파일도 같이 바꿔야 한다 (npm run voice:list 로 목록 다시 만들기).
-import { ADJ } from '../games/logic.js';
-import { withTopic, withSubject, withObject } from '../app/korean.js';
-import { nativeAdj } from '../games/numbers.js';
+import { ADJ } from '@공통/games/logic.js';
+import { withTopic, withSubject, withObject } from '@공통/app/korean.js';
+import { nativeAdj } from '@공통/games/numbers.js';
 
 // 시작·지도·마을
 export const GREETING = '안녕! 나는 코끼리야. 내 친구들을 도와줄래? 사바나 마을을 눌러 봐!';
