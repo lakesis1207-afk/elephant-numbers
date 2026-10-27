@@ -30,7 +30,13 @@ function villageCard(village, app) {
       'aria-label': open ? village.name : `${village.name}, 잠김`,
       onclick: enter,
     },
-    art('character', village.character, { class: village.round ? 'round' : '' }),
+    // 그림 칸: 둥근 네모 안에 마을 배경을 깔고 그 위에 마을 동물
+    h(
+      'span',
+      { class: 'vpic' },
+      art('background', `${village.key}-base`, { class: 'vbg' }),
+      art('character', village.character, { class: village.round ? 'round' : '' }),
+    ),
     open ? null : h('span', { class: 'lk' }, art('icon', 'lock', { class: 'ico' })),
     h('span', {}, village.name),
   );
