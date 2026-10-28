@@ -12,7 +12,7 @@ export const FARM = Object.freeze({
     title: '농장 친구들을 돌봐요!',
     icon: { kind: 'prop', name: 'basket' },
     enterVoice: '농장 마을이야! 돼지가 농장 친구들을 돌봐. 친구들을 도와줘!',
-    storyVoice: '농장 친구들을 돌봐요! 달걀도 세고, 먹이도 맞혀 봐!',
+    storyVoice: '농장 친구들을 돌봐요! 달걀도 세고, 숫자도 따라 써 봐!',
   },
   games: [
     {
@@ -24,11 +24,11 @@ export const FARM = Object.freeze({
       ],
     },
     {
-      key: 'farmcompare',
-      name: '누가 더 많아?',
+      key: 'trace',
+      name: '숫자 따라 그리기',
       scene: [
         { kind: 'character', name: 'chick', style: 'height:13cqh;left:0;bottom:2cqh' },
-        { kind: 'character', name: 'pig', style: 'height:17cqh;right:0;bottom:2cqh' },
+        { kind: 'prop', name: 'board', style: 'right:0;bottom:3cqh;width:15cqh;height:15cqh' },
       ],
     },
     {

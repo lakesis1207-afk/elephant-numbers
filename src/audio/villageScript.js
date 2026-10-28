@@ -14,8 +14,6 @@ export const balloonHintEnd = (n) => `이게 숫자 ${sinoWord(n)} 풍선이야!
 // 숲속·농장: 많다/적다 (하나씩 짝 짓기)
 export const TREES_MORE = '도토리가 더 많은 나무를 눌러 줘!';
 export const TREES_FEWER = '도토리가 더 적은 나무를 눌러 줘!';
-export const FARM_MORE = '병아리랑 돼지 중에 누가 더 많을까? 더 많은 쪽을 눌러 줘!';
-export const FARM_FEWER = '병아리랑 돼지 중에 누가 더 적을까? 더 적은 쪽을 눌러 줘!';
 export const PAIR_HINT = '하나씩 짝을 지어 보자!';
 export const PAIR_HINT_MORE = '짝이 없이 남은 쪽이 더 많아!';
 export const PAIR_HINT_FEWER = '남는 게 없는 쪽이 더 적어!';
@@ -58,7 +56,11 @@ export const eggsSub = addSubLine('둥지', '알', '빼면');
 export const basketAdd = addSubLine('바구니', '달걀', '더하면');
 export const basketSub = addSubLine('바구니', '달걀', '빼면');
 
-// 농장: 반짝 몇 개? (1~10)
+// 숫자 따라 그리기 (농장, 0~9)
+export const traceLinePrompt = (n) => `숫자 ${withObject(n === 0 ? '영' : sinoWord(n))} 따라 써 봐! 초록 점부터 시작해.`; // 0은 sinoWord가 읽지 못해 따로
+export const LINE_START_HINT = '초록 점을 누르고 시작해 봐!';
+export const LINE_IDLE_HINT = '초록 점에서 시작해서 끝까지 따라가 봐!';
+
 // 숫자 찾기 (농장): 그 숫자가 있는 줄 고르기
 export const rowFindPrompt = (n) => `${withObject(sinoWord(n))} 찾아봐! 어느 줄에 있을까?`;
 export const ROWFIND_HINT = '이 줄에 있어!';

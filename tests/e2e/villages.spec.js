@@ -1,7 +1,7 @@
 import { test, expect } from './fixtures.js';
 import { startWith } from './helpers.js';
 
-// 숲속·바닷가·공룡·농장 마을 게임 12개: 첫 문제는 두 번 틀려 힌트를 보고, 5문제를 맞혀 별을 받는다.
+// 숲속·바닷가·공룡·농장 마을 게임 11개 (농장의 숫자 따라 그리기는 아래 따로): 첫 문제는 두 번 틀려 힌트를 보고, 5문제를 맞혀 별을 받는다.
 // 게임판(.play)의 data-answer가 정답이고, 고르는 버튼은 .pick[data-value].
 test.setTimeout(90_000);
 
@@ -16,7 +16,6 @@ const GAMES = [
   ['공룡 나라', '발자국 빈칸', 'steps'],
   ['공룡 나라', '알 더하기·빼기', 'eggs'],
   ['농장 마을', '달걀 바구니', 'basket'],
-  ['농장 마을', '누가 더 많아?', 'farmcompare'],
   ['농장 마을', '숫자 찾기', 'rowfind'],
 ];
 
@@ -58,6 +57,52 @@ for (const [village, name, key] of GAMES) {
     await expect(page.locator(`.gcard[data-game="${key}"] .star`)).toBeVisible();
   });
 }
+
+/** 숫자 따라 그리기: 검사용 빌드가 적어 둔 획 좌표(data-strokes)를 마우스로 차례로 긋는다 */
+async function traceDigit(page) {
+  const board = page.locator('.play svg.lineq');
+  await expect(board).toBeVisible();
+  const strokes = await board.evaluate((svg) => {
+    const m = svg.getScreenCTM();
+    return JSON.parse(svg.dataset.strokes).map((s) =>
+      s.map(([x, y]) => {
+        const p = new DOMPoint(x, y).matrixTransform(m);
+        return [p.x, p.y];
+      }),
+    );
+  });
+  for (const stroke of strokes) {
+    const dense = [stroke[0]];
+    for (let i = 1; i < stroke.length; i += 1) {
+      const [ax, ay] = stroke[i - 1];
+      const [bx, by] = stroke[i];
+      const steps = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / 6));
+      for (let k = 1; k <= steps; k += 1) dense.push([ax + ((bx - ax) * k) / steps, ay + ((by - ay) * k) / steps]);
+    }
+    await page.mouse.move(...dense[0]);
+    await page.mouse.down();
+    for (const p of dense.slice(1)) await page.mouse.move(...p);
+    await page.mouse.up();
+  }
+}
+
+test('농장 마을 · 숫자 따라 그리기: 5문제를 따라 그리면 별', async ({ page }) => {
+  await startWith(page, { allOpen: true });
+  await page.getByRole('button', { name: '농장 마을', exact: true }).click();
+  await expect(page.locator('.gcard')).toHaveCount(3);
+  await page.getByRole('button', { name: '숫자 따라 그리기', exact: true }).click();
+  await expect(page.locator('.qdots i')).toHaveCount(5);
+  for (let q = 1; q <= 5; q++) {
+    await expect(page.locator('.play .right')).toHaveCount(0, { timeout: 5000 });
+    // 새 문제는 아직 아무것도 안 그린 상태로 시작한다 (이전 문제의 긋기가 넘어오지 않는다)
+    await expect(page.locator('.play .lfill:not([style*="hidden"])')).toHaveCount(0);
+    await traceDigit(page);
+    await expect(page.locator('.qdots i.on')).toHaveCount(q);
+  }
+  await expect(page.locator('.reward .sticker')).toBeVisible();
+  await page.getByRole('button', { name: '다음' }).click();
+  await expect(page.locator('.gcard[data-game="trace"] .star')).toBeVisible();
+});
 
 test('숲속 마을 게임 3개를 다 끝내면 바닷가 마을이 열린다', async ({ page }) => {
   await startWith(page, { forestOpen: true, done: { balloon: true, trees: true } });

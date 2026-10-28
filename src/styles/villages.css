@@ -761,3 +761,72 @@
   background: #c9f2c4;
   border-color: var(--leaf);
 }
+
+/* 숫자 따라 그리기 (농장): 숫자 SVG 위에 넓은 흰 길, 점선, 지나간 만큼 채워지는 색 선(--line) */
+.farmtraceq {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lineq {
+  display: block;
+  touch-action: none; /* 긋는 동안 화면이 같이 끌려가지 않게 */
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: visible;
+}
+.lineq path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.farm-trace.lineq {
+  width: auto;
+  height: 80cqh;
+  max-width: 100%;
+}
+.lbed {
+  stroke: rgb(255 255 255 / 60%);
+  stroke-width: 16;
+}
+.lguide {
+  stroke: var(--ink);
+  stroke-width: 2.4;
+  stroke-dasharray: 0.1 5;
+  opacity: 0.6;
+}
+.lfill {
+  stroke: var(--line);
+  stroke-width: 9;
+}
+.lstart circle {
+  fill: var(--leaf);
+  stroke: var(--ink);
+  stroke-width: 0.8;
+}
+.lstart.hl circle {
+  animation: lstart-pulse 0.5s ease-in-out 3;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+@keyframes lstart-pulse {
+  50% {
+    scale: 1.5;
+  }
+}
+.larrow {
+  fill: var(--leaf);
+  stroke: var(--ink);
+  stroke-width: 0.6;
+}
+.lhint {
+  fill: var(--sun);
+  stroke: var(--ink);
+  stroke-width: 0.6;
+  opacity: 0;
+  pointer-events: none;
+}
+.lhint.on {
+  opacity: 1;
+}

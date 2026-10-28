@@ -83,8 +83,9 @@ function farmLines() {
   const g = '농장 마을';
   return [
     ...addSubLines(g, 'basket', V.basketAdd, V.basketSub),
-    line(g, 'farm-more', V.FARM_MORE),
-    line(g, 'farm-fewer', V.FARM_FEWER),
+    ...range(0, 9).map((n) => line(g, `trace-q-${n}`, V.traceLinePrompt(n))),
+    line(g, 'line-start-hint', V.LINE_START_HINT),
+    line(g, 'line-idle-hint', V.LINE_IDLE_HINT),
     ...range(1, MAX_ROWFIND).map((n) => line(g, `rowfind-q-${n}`, V.rowFindPrompt(n))),
     line(g, 'rowfind-hint', V.ROWFIND_HINT),
   ];
