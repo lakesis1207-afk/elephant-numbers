@@ -20,6 +20,7 @@ const ICONS = [
 ];
 const BACKGROUNDS = [
   'savanna-base', 'forest-base', 'sea-base', 'dino-base', 'farm-base',
+  'savanna-numbers', // 시작·지도 화면 (사바나 배경에 숫자를 흩뿌린 그림)
 ];
 const PROPS = [
   'fruit-apple', 'fruit-strawberry', 'fruit-orange', 'fruit-banana', 'fruit-grape', 'fruit-peach',
